@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #chown your shit
-sudo chown -R $USER: ~/mvrc
+sudo chown -R $USER: ~
 
 echo "Setup SSH"
 #dunno what this does, it's from the github tut
