@@ -22,6 +22,10 @@ Bundle 'terryma/vim-multiple-cursors'
 Bundle 'pangloss/vim-javascript'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'ervandew/supertab'
+Bundle 'tomasr/molokai'
+Bundle 'vim-scripts/umber-green'
+Bundle 'vim-scripts/very-monochrome-grey-theme'
+Bundle 'vim-scripts/C64.vim'
 
 call vundle#end()            " required
 filetype plugin indent on  
@@ -37,11 +41,12 @@ filetype plugin indent on
 "remaps ; to : so the above things don't even happen at all
 nnoremap ; :
 
+"enables mousing
 set mouse=a
-"This sets t_Co to 256 to fix colors in the default ubuntu terminal
-if $COLORTERM == 'gnome-terminal'
-    set t_Co=256
-  endif
+
+"This sets t_Co to 256 to fix colors because seriously who doesn't have 256? 
+set t_Co=256
+
 set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show Unicode glyphs
 
@@ -67,7 +72,10 @@ set wildmenu
 set foldmethod=indent
 set foldlevel=99
 "i should get a better color scheme
-colorscheme noctu
+"colorscheme noctu
+colorscheme molokai
+"makes molokai nicer for 256 color use
+let g:rehash256 = 1
 "tabstop sets how many spaces a tab should be displayed as
 "expandtab means that tab makes spaces instead of a tab
 "shiftwidth is how much code is indended when you use >>

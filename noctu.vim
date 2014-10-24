@@ -31,7 +31,7 @@ hi SpellLocal          ctermfg=13    ctermbg=NONE  cterm=underline
 hi NonText             ctermfg=8
 hi LineNr              ctermfg=8     ctermbg=NONE
 hi CursorLineNr        ctermfg=11    ctermbg=0
-hi Visual              ctermfg=7     ctermbg=9
+hi Visual              ctermfg=0     ctermbg=15
 hi IncSearch           ctermfg=0     ctermbg=13    cterm=NONE
 hi Search              ctermfg=0     ctermbg=10
 hi StatusLine          ctermfg=7     ctermbg=NONE     cterm=bold

@@ -8,6 +8,7 @@ ln -s /usr/bin/nodejs /usr/bin/node
 #link up rc files
 ln .zshrc $UD
 ln .vimrc $UD
+ln .bash_aliases $UD
 #set up vim swap and backup folders
 mkdir $UD/.vimswap 
 mkdir $UD/.vimbackup 
