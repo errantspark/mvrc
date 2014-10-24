@@ -1,0 +1,5 @@
+[alias]
+  st = status
+  ca = commit -am
+  a = add .
+  ac = !git add . && git commit -am
