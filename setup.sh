@@ -1,11 +1,14 @@
 #!/bin/bash
 
 #chown your shit
-sudo chown -R errata: ~/mvrc
+sudo chown -R $USER: ~/mvrc
 
-read -p "Are you sure? " -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-    # do dangerous stuff
-fi
+
+echo "Setup SSH"
+#dunno what this does, it's from the github tut
+read -p "email> " semail
+ssh-keygen -t rsa -C $semail
+#ssh-agent -s
+#ssh-add ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub
+read -p "press any key to continue"
