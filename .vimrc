@@ -11,9 +11,10 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#begin()
 " you have to run :BundleInstall or :BundleInstall! to actually make it work
 Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/powerline'
+Bundle 'bling/vim-airline'
 Bundle 'kovisoft/slimv'
 Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'goldfeld/vim-seek'
