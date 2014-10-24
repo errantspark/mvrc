@@ -3,7 +3,6 @@
 #chown your shit
 sudo chown -R $USER: ~/mvrc
 
-
 echo "Setup SSH"
 #dunno what this does, it's from the github tut
 read -p "email> " semail

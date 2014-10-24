@@ -3,9 +3,29 @@
 "makes it so that mousing in terminal vim goes into visual mode rather than
 "being all fucking weird
 "pathogen plugin manager
-call pathogen#infect()
+"call pathogen#infect()
 "update help files
-Helptags
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#begin()
+" you have to run :BundleInstall or :BundleInstall! to actually make it work
+Bundle 'gmarik/vundle'
+Bundle 'Lokaltog/powerline'
+Bundle 'kovisoft/slimv'
+Bundle 'scrooloose/nerdtree'
+Bundle 'kien/ctrlp'
+Bundle 'mileszs/ack.vim'
+Bundle 'goldfeld/vim-seek'
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'pangloss/vim-javascript'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'ervandew/supertab'
+
+call vundle#end()            " required
+filetype plugin indent on  
+
+"helptags
 
 "fix capital W and capital Q annoyance
 :command WQ wq
@@ -21,18 +41,17 @@ set mouse=a
 if $COLORTERM == 'gnome-terminal'
     set t_Co=256
   endif
-set nocompatible
 set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show Unicode glyphs
 
 "let g:Powerline_symbols = 'unicode'
 
-let g:Powerline_symbols_override = {
-  \ 'BRANCH': [0x2213],
-  \ 'LINE': 'L',
-  \ 'RO': 'RO',
-  \ }
-let g:Powerline_dividers_override = ['|', '>', '|', '<']
+"let g:Powerline_symbols_override = {
+"  \ 'BRANCH': [0x2213],\
+"  \ 'LINE': 'L',
+"  \ 'RO': 'RO',
+"  \ }
+"let g:Powerline_dividers_override = ['|', '>', '|', '<']
 
 set hidden
 "sets the minimum height of the currently selected window to 30 lines
@@ -80,8 +99,8 @@ map <C-L> <C-W>l
 "makes it so that ctrl+enter goes to the correct place
 map <C-Return> <CR><CR><C-o>k<Tab>
 "put swap files elsewhere
-set backupdir=~/vimbackups
-set directory=~/vimswap
+set backupdir=~/.vimbackups
+set directory=~/.vimswap
 "let g:solarized_termcolors=256
 "exit insert mode with jk or kj
 ino jk <ESC>
