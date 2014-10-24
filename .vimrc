@@ -53,6 +53,7 @@ set encoding=utf-8 " Necessary to show Unicode glyphs
 "  \ 'RO': 'RO',
 "  \ }
 "let g:Powerline_dividers_override = ['|', '>', '|', '<']
+let g:airline#extensions#tabline#enabled = 1
 
 set hidden
 "sets the minimum height of the currently selected window to 30 lines
