@@ -11,12 +11,15 @@ ln .vimrc $UD
 #set up vim swap and backup folders
 mkdir $UD/.vimswap 
 mkdir $UD/.vimbackup 
+mkdir $UD/.vim
+mkdir $UD/.vim/colors
 #link up colorschemes
 ln noctu.vim $UD/.vim/colors/
 ln orchid.vim $UD/.vim/colors/
 
 #copy .gitinfo so userland setup script can populate it with email/password
-eval cp .gitconfig ~$UD
+cp .gitconfig $UD
 
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+#clone vundle
+git clone https://github.com/gmarik/vundle.git $UD/.vim/bundle/vundle
 
