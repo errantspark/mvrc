@@ -14,7 +14,7 @@ Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/powerline'
 Bundle 'kovisoft/slimv'
 Bundle 'scrooloose/nerdtree'
-Bundle 'kien/ctrlp'
+Bundle 'kien/ctrlp.vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'goldfeld/vim-seek'
 Bundle 'terryma/vim-multiple-cursors'
@@ -85,7 +85,6 @@ let g:indent_guides_auto_colors = 0
 "adds jumps from seek
 let g:seek_enable_jumps = 1
 syntax on
-filetype plugin indent on
 "this remaps Ctrl+(+,-,<,>) to resize windows
 "map - <C-W>-
 "map + <C-W>+
@@ -99,7 +98,7 @@ map <C-L> <C-W>l
 "makes it so that ctrl+enter goes to the correct place
 map <C-Return> <CR><CR><C-o>k<Tab>
 "put swap files elsewhere
-set backupdir=~/.vimbackups
+set backupdir=~/.vimbackup
 set directory=~/.vimswap
 "let g:solarized_termcolors=256
 "exit insert mode with jk or kj
