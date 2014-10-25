@@ -17,3 +17,4 @@ read -p "guthub email>    " gemail
 
 git config --global user.name $gname
 git config --global user.email $gemail
+git config --global push.default matching
