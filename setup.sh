@@ -11,3 +11,9 @@ ssh-keygen -t rsa -C $semail
 #ssh-add ~/.ssh/id_rsa
 cat ~/.ssh/id_rsa.pub
 read -p "press any key to continue"
+
+read -p "github username> " gname
+read -p "guthub email>    " gemail
+
+git config --global user.name $gname
+git config --global user.email $gemail

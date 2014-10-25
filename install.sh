@@ -8,21 +8,21 @@ ln -s /usr/bin/nodejs /usr/bin/node
 npm install -g csslint jshint
 
 #link up rc files
-ln .zshrc $UD
-ln .vimrc $UD
-ln .bash_aliases $UD
-ln .screenrc $UD
+ln rc/.zshrc $UD
+ln rc/.vimrc $UD
+ln rc/.bash_aliases $UD
+ln rc/.screenrc $UD
 #set up vim swap and backup folders
 mkdir $UD/.vimswap 
 mkdir $UD/.vimbackup 
 mkdir $UD/.vim
 mkdir $UD/.vim/colors
 #link up colorschemes
-ln noctu.vim $UD/.vim/colors/
-ln orchid.vim $UD/.vim/colors/
+ln vim/noctu.vim $UD/.vim/colors/
+ln vim/orchid.vim $UD/.vim/colors/
 
 #copy .gitinfo so userland setup script can populate it with email/password
-cp .gitconfig $UD
+cp rc/.gitconfig $UD
 
 #clone vundle
 git clone https://github.com/gmarik/vundle.git $UD/.vim/bundle/vundle
