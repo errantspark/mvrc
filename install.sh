@@ -1,9 +1,11 @@
 #!/bin/bash
 #This is the unattended install script
-apt-get -y install nodejs zsh ack-grep
+apt-get -y install nodejs zsh ack-grep npm
 
 #link up node so it's called node
 ln -s /usr/bin/nodejs /usr/bin/node
+
+npm install -g csslint jshint
 
 #link up rc files
 ln .zshrc $UD

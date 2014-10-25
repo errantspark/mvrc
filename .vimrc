@@ -26,6 +26,8 @@ Bundle 'tomasr/molokai'
 Bundle 'vim-scripts/umber-green'
 Bundle 'vim-scripts/very-monochrome-grey-theme'
 Bundle 'vim-scripts/C64.vim'
+Bundle 'edkolev/tmuxline.vim'
+Bundle 'tpope/vim-fugitive'
 
 call vundle#end()            " required
 filetype plugin indent on  
