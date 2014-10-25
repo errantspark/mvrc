@@ -7,6 +7,13 @@ ln -s /usr/bin/nodejs /usr/bin/node
 
 npm install -g csslint jshint
 
+rm $UD/.zshrc
+rm $UD/.vimrc
+rm $UD/.bash_aliases
+rm $UD/.screenrc
+rm $UD/.vim/colors/noctu.vim
+rm $UD/.vim/colors/orchid.vim
+#rm $UD/.gitconfig
 #link up rc files
 ln rc/.zshrc $UD
 ln rc/.vimrc $UD
