@@ -11,6 +11,7 @@ npm install -g csslint jshint
 ln .zshrc $UD
 ln .vimrc $UD
 ln .bash_aliases $UD
+ln .screenrc $UD
 #set up vim swap and backup folders
 mkdir $UD/.vimswap 
 mkdir $UD/.vimbackup 
