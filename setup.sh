@@ -18,3 +18,6 @@ read -p "guthub email>    " gemail
 git config --global user.name $gname
 git config --global user.email $gemail
 git config --global push.default matching
+
+#change mvrc to ssh based
+git remote set-url origin git@github.com:errantspark/mvrc.git

@@ -4,3 +4,4 @@ vib() {
 
 alias srd="screen -rd"
 alias ss="screen -S"
+alias sls="screen -list"
