@@ -14,26 +14,27 @@ npm install -g csslint jshint bower grunt-cli
 #clean things, this is only useful for re-linking stuff in edge cases
 #TODO i should really write a more robust update tool
 rm $UD/.zshrc
+rm $UD/.zprofile
 rm $UD/.vimrc
 rm $UD/.bash_aliases
 rm $UD/.screenrc
 rm $UD/.vim/colors/noctu.vim
 rm $UD/.vim/colors/orchid.vim
 #rm $UD/.gitconfig
-#link up rc files
-ln rc/.zshrc $UD
-ln rc/.zprofile $UD
-ln rc/.vimrc $UD
-ln rc/.bash_aliases $UD
-ln rc/.screenrc $UD
 #set up vim swap and backup folders
 mkdir $UD/.vimswap 
 mkdir $UD/.vimbackup 
 mkdir $UD/.vim
 mkdir $UD/.vim/colors
+#link up rc files
+ln -s $cwd/rc/.zshrc ~
+ln -s $cwd/rc/.zprofile ~
+ln -s $cwd/rc/.vimrc ~
+ln -s $cwd/rc/.bash_aliases ~
+ln -s $cwd/rc/.screenrc ~
 #link up colorschemes
-ln vim/noctu.vim $UD/.vim/colors/
-ln vim/orchid.vim $UD/.vim/colors/
+ln -s $cwd/vim/noctu.vim ~/.vim/colors/
+ln -s $cwd/vim/orchid.vim ~/.vim/colors/
 
 #copy .gitinfo so userland setup script can populate it with email/password
 cp rc/.gitconfig $UD
