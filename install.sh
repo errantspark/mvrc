@@ -5,7 +5,7 @@ apt-get -y install nodejs zsh ack-grep npm
 #link up node so it's called node
 ln -s /usr/bin/nodejs /usr/bin/node
 
-npm install -g csslint jshint bower
+npm install -g csslint jshint bower grunt-cli
 
 rm $UD/.zshrc
 rm $UD/.vimrc
