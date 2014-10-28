@@ -7,3 +7,5 @@ termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 defbce "on" 
 # set TERM
 term screen-256color-bce
+#make sure screen behaves correctly after fullscreen windows exit
+altscreen on
