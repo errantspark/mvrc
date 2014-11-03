@@ -3,7 +3,7 @@
 #keychain for ssh-agent management
 #zsh cause it's awesome (VIM bindings yay)
 #ack cause something needed it and i forget what
-apt-get -y install nodejs zsh ack-grep npm keychain
+apt-get -y install nodejs zsh ack-grep npm keychain silversearcher-ag
 
 #link up node so it's called node
 ln -s /usr/bin/nodejs /usr/bin/node

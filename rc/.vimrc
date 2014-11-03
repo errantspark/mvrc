@@ -140,3 +140,9 @@ let g:lisp_rainbow=1
 "stop fucking trying to do commands in insert mode
 "autocmd InsertEnter * :hi LineNr ctermbg=11
 "autocmd InsertLeave * :hi LineNr ctermbg=none
+"makes ctrlp have line mode
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlPLastMode'
+let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
+"silversurfer fast ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
