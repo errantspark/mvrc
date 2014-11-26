@@ -13,7 +13,7 @@ cat ~/.ssh/id_rsa.pub
 read -p "press any key to continue"
 
 read -p "github username> " gname
-read -p "guthub email>    " gemail
+read -p "github email>    " gemail
 
 git config --global user.name $gname
 git config --global user.email $gemail
