@@ -43,3 +43,5 @@ cp rc/.gitconfig $UD
 #clone vundle
 git clone https://github.com/gmarik/vundle.git $UD/.vim/bundle/vundle
 
+#install vundle plugins
+vim +PluginInstall +qall
