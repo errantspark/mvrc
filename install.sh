@@ -27,14 +27,15 @@ mkdir $UD/.vimbackup
 mkdir $UD/.vim
 mkdir $UD/.vim/colors
 #link up rc files
-ln -s $cwd/rc/.zshrc ~
-ln -s $cwd/rc/.zprofile ~
-ln -s $cwd/rc/.vimrc ~
-ln -s $cwd/rc/.bash_aliases ~
-ln -s $cwd/rc/.screenrc ~
+cwd=$(pwd)
+ln -s $cwd/rc/.zshrc $UD
+ln -s $cwd/rc/.zprofile $UD
+ln -s $cwd/rc/.vimrc $UD
+ln -s $cwd/rc/.bash_aliases $UD
+ln -s $cwd/rc/.screenrc $UD
 #link up colorschemes
-ln -s $cwd/vim/noctu.vim ~/.vim/colors/
-ln -s $cwd/vim/orchid.vim ~/.vim/colors/
+ln -s $cwd/vim/noctu.vim $UD/.vim/colors/
+ln -s $cwd/vim/orchid.vim $UD/.vim/colors/
 
 #copy .gitinfo so userland setup script can populate it with email/password
 cp rc/.gitconfig $UD
