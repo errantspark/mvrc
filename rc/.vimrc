@@ -21,14 +21,30 @@ Bundle 'goldfeld/vim-seek'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'pangloss/vim-javascript'
 Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'ervandew/supertab'
+"Bundle 'ervandew/supertab'
 Bundle 'tomasr/molokai'
 Bundle 'vim-scripts/umber-green'
 Bundle 'vim-scripts/very-monochrome-grey-theme'
 Bundle 'vim-scripts/C64.vim'
 Bundle 'edkolev/tmuxline.vim'
 Bundle 'tpope/vim-fugitive'
+
 Bundle 'marijnh/tern_for_vim'
+" requires you to do an 'npm install' inside the tern dir
+
+Bundle 'jelera/vim-javascript-syntax'
+
+Bundle 'einars/js-beautify'
+Bundle 'maksimr/vim-jsbeautify'
+"this requires a 'git submodule update --init --recursive' in it's dir
+
+Bundle 'Valloric/YouCompleteMe'
+"this requires additional shit to be installed so watch out
+"also you don't get semantic completion at the top level without pressing
+"ctrl+space
+"these two commands should do it
+"cd ~/.vim/bundle/YouCompleteMe
+"./install.sh
 
 call vundle#end()            " required
 filetype plugin indent on  
