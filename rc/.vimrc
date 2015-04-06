@@ -28,6 +28,7 @@ Bundle 'vim-scripts/very-monochrome-grey-theme'
 Bundle 'vim-scripts/C64.vim'
 Bundle 'edkolev/tmuxline.vim'
 Bundle 'tpope/vim-fugitive'
+Bundle 'marijnh/tern_for_vim'
 
 call vundle#end()            " required
 filetype plugin indent on  
