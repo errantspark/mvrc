@@ -4,12 +4,14 @@
 "being all fucking weird
 "pathogen plugin manager
 "call pathogen#infect()
-"update help files
+"fuck the visual bell
+set noerrorbells
+set visualbell
+set t_vb=
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#begin()
-" you have to run :BundleInstall or :BundleInstall! to actually make it work
 Bundle 'gmarik/vundle'
 Bundle 'bling/vim-airline'
 Bundle 'kovisoft/slimv'
@@ -28,6 +30,9 @@ Bundle 'vim-scripts/very-monochrome-grey-theme'
 Bundle 'vim-scripts/C64.vim'
 Bundle 'edkolev/tmuxline.vim'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-surround'
+Bundle 'Raimondi/delimitMate'
 
 Bundle 'marijnh/tern_for_vim'
 " requires you to do an 'npm install' inside the tern dir
@@ -45,10 +50,15 @@ Bundle 'Valloric/YouCompleteMe'
 "these two commands should do it
 "cd ~/.vim/bundle/YouCompleteMe
 "./install.sh
+"Bundle 'wookiehangover/jshint.vim'
 
 call vundle#end()            " required
 filetype plugin indent on  
 
+autocmd CompleteDone * pclose
+"this maps Ctrl+O to open up a newline inside parens
+imap <C-o> <CR><Esc>O
+" you have to run :BundleInstall or :BundleInstall! to actually make it work
 "helptags
 
 "fix capital W and capital Q annoyance
@@ -88,7 +98,7 @@ set winminheight=5
 set wildmode=longest,list,full
 set wildmenu
 "sets up code folding
-set foldmethod=indent
+set foldmethod=syntax
 set foldlevel=99
 "i should get a better color scheme
 "colorscheme noctu
@@ -105,6 +115,7 @@ set incsearch ignorecase hlsearch
 set nu
 "marks the column at 80 lines red for old readability standards
 set colorcolumn=80
+set scrolloff=8         "Start scrolling when we're 8 lines away from margins"
 "UPDATE: i was a retard| that was ugly so now we use this instead
 "match Error /\%81v.\+/
 
@@ -163,3 +174,11 @@ let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
 "silversurfer fast ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" Called once right before you start selecting multiple cursors
+"function! Multiple_cursors_before()
+"endfunction
+
+" Called once only when the multiple selection is canceled (default <Esc>)
+"function! Multiple_cursors_after()
+"endfunction
