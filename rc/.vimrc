@@ -32,6 +32,7 @@ Bundle 'edkolev/tmuxline.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-abolish'
 Bundle 'Raimondi/delimitMate'
 
 Bundle 'marijnh/tern_for_vim'
