@@ -3,7 +3,9 @@
 #keychain for ssh-agent management
 #zsh cause it's awesome (VIM bindings yay)
 #ack cause something needed it and i forget what
-apt-get -y install nodejs zsh ack-grep npm keychain silversearcher-ag cmake python-dev build-essential
+#units cause units
+#cmake build essential and python dev cause some vim plugin needs it
+apt-get -y install nodejs zsh ack-grep npm keychain silversearcher-ag cmake python-dev build-essential units
 
 #link up node so it's called node
 ln -s /usr/bin/nodejs /usr/bin/node
