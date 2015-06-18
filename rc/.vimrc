@@ -189,7 +189,7 @@ let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 
-nnoremap <C-n> :call NumberToggle()<cr>
+"nnoremap <C-n> :call NumberToggle()<cr>
 "enables rainbow perens because DOUBLE RAINBOW ALL THE WAY ACROSS THE LISP
 let g:lisp_rainbow=1
 "TODO decide if i should deprecate this in favor of powerline
