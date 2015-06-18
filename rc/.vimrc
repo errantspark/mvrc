@@ -12,22 +12,24 @@ set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#begin()
+"magic vim plugin management
 Bundle 'gmarik/vundle'
+
+"color schemes
+Bundle 'tomasr/molokai'
+Bundle 'vim-scripts/umber-green'
+Bundle 'vim-scripts/very-monochrome-grey-theme'
+Bundle 'vim-scripts/C64.vim'
+
 Bundle 'bling/vim-airline'
-Bundle 'kovisoft/slimv'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'goldfeld/vim-seek'
 Bundle 'terryma/vim-multiple-cursors'
-Bundle 'pangloss/vim-javascript'
 Bundle 'nathanaelkane/vim-indent-guides'
-"Bundle 'ervandew/supertab'
-Bundle 'tomasr/molokai'
-Bundle 'vim-scripts/umber-green'
-Bundle 'vim-scripts/very-monochrome-grey-theme'
-Bundle 'vim-scripts/C64.vim'
+
 Bundle 'edkolev/tmuxline.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-unimpaired'
@@ -36,15 +38,20 @@ Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-repeat'
 Bundle 'Raimondi/delimitMate'
 
+"javascript shit
+"tern is the thing that does type inference and other cray shit
 Bundle 'marijnh/tern_for_vim'
 " requires you to do an 'npm install' inside the tern dir
-
 Bundle 'jelera/vim-javascript-syntax'
-
+Bundle 'pangloss/vim-javascript'
 Bundle 'einars/js-beautify'
 Bundle 'maksimr/vim-jsbeautify'
 "this requires a 'git submodule update --init --recursive' in it's dir
 
+"glorious LISP IDE
+Bundle 'kovisoft/slimv'
+
+"amazing autocompletion that has some weird errors/conflicts maybe?
 Bundle 'Valloric/YouCompleteMe'
 "this requires additional shit to be installed so watch out
 "also you don't get semantic completion at the top level without pressing
@@ -52,16 +59,35 @@ Bundle 'Valloric/YouCompleteMe'
 "these two commands should do it
 "cd ~/.vim/bundle/YouCompleteMe
 "./install.sh
-"Bundle 'wookiehangover/jshint.vim'
 
+"go syntax support 
+Bundle 'fatih/vim-go'
+
+"rust syntax support
+Bundle 'rust-lang/rust.vim'
+
+"all plugin imports have to happen before this line
 call vundle#end()            " required
-filetype plugin indent on  
+filetype plugin indent on  "also required
+"end of bundle related stuff
 
+"this makes the completion preview window close after completion (ycm)
+"see also :echo &completeopt
 autocmd CompleteDone * pclose
+
 "this maps Ctrl+O to open up a newline inside parens
 imap <C-o> <CR><Esc>O
-" you have to run :BundleInstall or :BundleInstall! to actually make it work
-"helptags
+
+"recommended settings for syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+"maybe turn this off? it might get annoying
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 "fix capital W and capital Q annoyance
 :command WQ wq
