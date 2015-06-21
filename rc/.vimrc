@@ -2,8 +2,10 @@
 ":so $MYVIMRC <-- this reloads the vimrc from any vim
 "makes it so that mousing in terminal vim goes into visual mode rather than
 "being all fucking weird
-"pathogen plugin manager
-"call pathogen#infect()
+"put swap files elsewhere
+set backupdir=~/.vimbackup
+set directory=~/.vimswap
+
 "fuck the visual bell
 set noerrorbells
 set visualbell
@@ -11,9 +13,13 @@ set t_vb=
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle/
+"windows (ugh)
+"set rtp+=c:/Program\ Files\ (x86)/Vim/vimfiles/bundle/vundle
 call vundle#begin()
 "magic vim plugin management
 Bundle 'gmarik/vundle'
+"uncomment on windows
+"so $VIMRUNTIME\..\locals.vim
 
 "color schemes
 Bundle 'tomasr/molokai'
@@ -165,9 +171,7 @@ map <C-H> <C-W>h
 map <C-L> <C-W>l
 "makes it so that ctrl+enter goes to the correct place
 map <C-Return> <CR><CR><C-o>k<Tab>
-"put swap files elsewhere
-set backupdir=~/.vimbackup
-set directory=~/.vimswap
+
 "let g:solarized_termcolors=256
 "exit insert mode with jk or kj
 ino jk <ESC>
