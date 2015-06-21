@@ -3,7 +3,9 @@
 #keychain for ssh-agent management
 #zsh cause it's awesome (VIM bindings yay)
 #ack cause something needed it and i forget what
-apt-get -y install nodejs zsh ack-grep npm keychain silversearcher-ag
+#units cause units
+#cmake build essential and python dev cause some vim plugin needs it
+apt-get -y install nodejs zsh ack-grep npm keychain silversearcher-ag cmake python-dev build-essential units
 
 #link up node so it's called node
 ln -s /usr/bin/nodejs /usr/bin/node
@@ -20,6 +22,7 @@ rm $UD/.bash_aliases
 rm $UD/.screenrc
 rm $UD/.vim/colors/noctu.vim
 rm $UD/.vim/colors/orchid.vim
+rm $UD/.vim/.editorconfig
 #rm $UD/.gitconfig
 #set up vim swap and backup folders
 mkdir $UD/.vimswap 
@@ -36,6 +39,8 @@ ln -s $cwd/rc/.screenrc $UD
 #link up colorschemes
 ln -s $cwd/vim/noctu.vim $UD/.vim/colors/
 ln -s $cwd/vim/orchid.vim $UD/.vim/colors/
+#link up editorconfig for jsbeautify etc
+ln -s $cwd/vim/.editorconfig $UD/.vim/
 
 #copy .gitinfo so userland setup script can populate it with email/password
 cp rc/.gitconfig $UD

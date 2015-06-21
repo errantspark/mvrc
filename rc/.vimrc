@@ -4,35 +4,90 @@
 "being all fucking weird
 "pathogen plugin manager
 "call pathogen#infect()
-"update help files
+"fuck the visual bell
+set noerrorbells
+set visualbell
+set t_vb=
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#begin()
-" you have to run :BundleInstall or :BundleInstall! to actually make it work
+"magic vim plugin management
 Bundle 'gmarik/vundle'
+
+"color schemes
+Bundle 'tomasr/molokai'
+Bundle 'vim-scripts/umber-green'
+Bundle 'vim-scripts/very-monochrome-grey-theme'
+Bundle 'vim-scripts/C64.vim'
+
 Bundle 'bling/vim-airline'
-Bundle 'kovisoft/slimv'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'goldfeld/vim-seek'
 Bundle 'terryma/vim-multiple-cursors'
-Bundle 'pangloss/vim-javascript'
 Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'ervandew/supertab'
-Bundle 'tomasr/molokai'
-Bundle 'vim-scripts/umber-green'
-Bundle 'vim-scripts/very-monochrome-grey-theme'
-Bundle 'vim-scripts/C64.vim'
+
 Bundle 'edkolev/tmuxline.vim'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-repeat'
+Bundle 'Raimondi/delimitMate'
 
+"javascript shit
+"tern is the thing that does type inference and other cray shit
+Bundle 'marijnh/tern_for_vim'
+" requires you to do an 'npm install' inside the tern dir
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'pangloss/vim-javascript'
+Bundle 'einars/js-beautify'
+Bundle 'maksimr/vim-jsbeautify'
+"this requires a 'git submodule update --init --recursive' in it's dir
+
+"glorious LISP IDE
+Bundle 'kovisoft/slimv'
+
+"amazing autocompletion that has some weird errors/conflicts maybe?
+Bundle 'Valloric/YouCompleteMe'
+"this requires additional shit to be installed so watch out
+"also you don't get semantic completion at the top level without pressing
+"ctrl+space
+"these two commands should do it
+"cd ~/.vim/bundle/YouCompleteMe
+"./install.sh
+
+"go syntax support 
+Bundle 'fatih/vim-go'
+
+"rust syntax support
+Bundle 'rust-lang/rust.vim'
+
+"all plugin imports have to happen before this line
 call vundle#end()            " required
-filetype plugin indent on  
+filetype plugin indent on  "also required
+"end of bundle related stuff
 
-"helptags
+"this makes the completion preview window close after completion (ycm)
+"see also :echo &completeopt
+autocmd CompleteDone * pclose
+
+"this maps Ctrl+O to open up a newline inside parens
+imap <C-o> <CR><Esc>O
+
+"recommended settings for syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+"maybe turn this off? it might get annoying
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 "fix capital W and capital Q annoyance
 :command WQ wq
@@ -71,7 +126,7 @@ set winminheight=5
 set wildmode=longest,list,full
 set wildmenu
 "sets up code folding
-set foldmethod=indent
+set foldmethod=syntax
 set foldlevel=99
 "i should get a better color scheme
 "colorscheme noctu
@@ -88,6 +143,7 @@ set incsearch ignorecase hlsearch
 set nu
 "marks the column at 80 lines red for old readability standards
 set colorcolumn=80
+set scrolloff=8         "Start scrolling when we're 8 lines away from margins"
 "UPDATE: i was a retard| that was ugly so now we use this instead
 "match Error /\%81v.\+/
 
@@ -133,7 +189,7 @@ let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 
-nnoremap <C-n> :call NumberToggle()<cr>
+"nnoremap <C-n> :call NumberToggle()<cr>
 "enables rainbow perens because DOUBLE RAINBOW ALL THE WAY ACROSS THE LISP
 let g:lisp_rainbow=1
 "TODO decide if i should deprecate this in favor of powerline
@@ -146,3 +202,11 @@ let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
 "silversurfer fast ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" Called once right before you start selecting multiple cursors
+"function! Multiple_cursors_before()
+"endfunction
+
+" Called once only when the multiple selection is canceled (default <Esc>)
+"function! Multiple_cursors_after()
+"endfunction
