@@ -6,3 +6,4 @@ behave mswin
 set guifont=Consolas:h8
 Bundle 'Shougo/neocomplete.vim'
 let g:neocomplete#enable_at_startup = 1
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
