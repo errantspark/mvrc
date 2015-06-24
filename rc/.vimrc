@@ -42,6 +42,7 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-eunuch'
 Bundle 'Raimondi/delimitMate'
 
 "javascript shit
