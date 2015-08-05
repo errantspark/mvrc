@@ -1,0 +1,9 @@
+#!/bin/bash
+feh --bg-scale bike2.jpg &
+volti &
+stalonetray & nm-applet & clipit &
+xcompmgr -a &
+
+gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
+
+exec xmonad 
