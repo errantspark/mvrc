@@ -45,6 +45,9 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-eunuch'
 Bundle 'Raimondi/delimitMate'
 
+"should allowg for C-_ to close HTML tags easily
+Bundle 'vim-scripts/closetag.vim'
+
 "javascript shit
 "tern is the thing that does type inference and other cray shit
 Bundle 'marijnh/tern_for_vim'
