@@ -59,6 +59,9 @@ Bundle 'maksimr/vim-jsbeautify'
 "glorious LISP IDE
 Bundle 'kovisoft/slimv'
 
+"glorious everything ide?
+Bundle "zweifisch/pipe2eval"
+
 "amazing autocompletion that has some weird errors/conflicts maybe?
 Bundle 'Valloric/YouCompleteMe'
 "this requires additional shit to be installed so watch out

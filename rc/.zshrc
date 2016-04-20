@@ -82,3 +82,6 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 source /usr/local/bin/virtualenvwrapper.sh
+
+export NVM_DIR="/home/errata/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
