@@ -50,9 +50,9 @@ Bundle 'Raimondi/delimitMate'
 "tern is the thing that does type inference and other cray shit
 Bundle 'marijnh/tern_for_vim'
 " requires you to do an 'npm install' inside the tern dir
-Bundle 'jelera/vim-javascript-syntax'
+"Bundle 'jelera/vim-javascript-syntax'
 Bundle 'pangloss/vim-javascript'
-Bundle 'einars/js-beautify'
+"Bundle 'einars/js-beautify'
 Bundle 'maksimr/vim-jsbeautify'
 "this requires a 'git submodule update --init --recursive' in it's dir
 
@@ -61,6 +61,9 @@ Bundle 'kovisoft/slimv'
 
 "glorious everything ide?
 Bundle "zweifisch/pipe2eval"
+
+"debug with node with F5
+nnoremap <F5> :! node debug %<CR>
 
 "amazing autocompletion that has some weird errors/conflicts maybe?
 Bundle 'Valloric/YouCompleteMe'
@@ -261,10 +264,11 @@ endfunc
 :noremap <RightRelease> <Nop>
 :noremap <RightDrag> <Nop> 
 
-" Called once right before you start selecting multiple cursors
-"function! Multiple_cursors_before()
-"endfunction
+"disable ycm when using multiple cursors 
+function! Multiple_cursors_before()
+  let g:ycm_auto_trigger = 0
+endfunction
 
-" Called once only when the multiple selection is canceled (default <Esc>)
-"function! Multiple_cursors_after()
-"endfunction
+function! Multiple_cursors_after()
+  let g:ycm_auto_trigger = 1
+endfunction
