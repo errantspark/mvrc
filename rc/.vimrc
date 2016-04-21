@@ -54,7 +54,31 @@ Bundle 'marijnh/tern_for_vim'
 Bundle 'pangloss/vim-javascript'
 "Bundle 'einars/js-beautify'
 Bundle 'maksimr/vim-jsbeautify'
+"no longer sure what this means in the comment below this one, fuck
 "this requires a 'git submodule update --init --recursive' in it's dir
+
+"type script syntax highlighting
+Bundle 'HerringtonDarkholme/yats.vim'
+
+"typescript tools
+Bundle 'Quramy/tsuquyomi'
+
+let g:ycm_semantic_triggers =  {
+            \   'c' : ['->', '.'],
+            \   'objc' : ['->', '.'],
+            \   'ocaml' : ['.', '#'],
+            \   'cpp,objcpp' : ['->', '.', '::'],
+            \   'perl' : ['->'],
+            \   'php' : ['->', '::', '"', "'", 'use ', 'namespace ', '\'],
+            \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+            \   'html': ['<', '"', '</', ' '],
+            \   'vim' : ['re![_a-za-z]+[_\w]*\.'],
+            \   'ruby' : ['.', '::'],
+            \   'lua' : ['.', ':'],
+            \   'erlang' : [':'],
+            \   'haskell' : ['.', 're!.']
+            \ }
+
 
 "glorious LISP IDE
 Bundle 'kovisoft/slimv'
