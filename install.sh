@@ -7,6 +7,9 @@
 #cmake build essential and python dev cause some vim plugin needs it
 apt-get -y install nodejs zsh ack-grep npm keychain silversearcher-ag cmake python-dev build-essential units
 
+#it probably makes sense to replace all this stuff with NVM
+#curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
+
 #link up node so it's called node
 ln -s /usr/bin/nodejs /usr/bin/node
 
