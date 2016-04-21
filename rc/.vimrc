@@ -43,23 +43,51 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-eunuch'
+Bundle 'tpope/vim-ragtag'
 Bundle 'Raimondi/delimitMate'
-
-"should allowg for C-_ to close HTML tags easily
-Bundle 'vim-scripts/closetag.vim'
 
 "javascript shit
 "tern is the thing that does type inference and other cray shit
 Bundle 'marijnh/tern_for_vim'
 " requires you to do an 'npm install' inside the tern dir
-Bundle 'jelera/vim-javascript-syntax'
-"Bundle 'pangloss/vim-javascript'
-Bundle 'einars/js-beautify'
+"Bundle 'jelera/vim-javascript-syntax'
+Bundle 'pangloss/vim-javascript'
+"Bundle 'einars/js-beautify'
 Bundle 'maksimr/vim-jsbeautify'
+"no longer sure what this means in the comment below this one, fuck
 "this requires a 'git submodule update --init --recursive' in it's dir
+
+"type script syntax highlighting
+Bundle 'HerringtonDarkholme/yats.vim'
+
+"typescript tools
+Bundle 'Quramy/tsuquyomi'
+
+let g:ycm_semantic_triggers =  {
+            \   'c' : ['->', '.'],
+            \   'objc' : ['->', '.'],
+            \   'ocaml' : ['.', '#'],
+            \   'cpp,objcpp' : ['->', '.', '::'],
+            \   'perl' : ['->'],
+            \   'php' : ['->', '::', '"', "'", 'use ', 'namespace ', '\'],
+            \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+            \   'html': ['<', '"', '</', ' '],
+            \   'vim' : ['re![_a-za-z]+[_\w]*\.'],
+            \   'ruby' : ['.', '::'],
+            \   'lua' : ['.', ':'],
+            \   'erlang' : [':'],
+            \   'haskell' : ['.', 're!.']
+            \ }
+
 
 "glorious LISP IDE
 Bundle 'kovisoft/slimv'
+
+"glorious everything ide?
+Bundle "zweifisch/pipe2eval"
+
+"debug with node with F5
+nnoremap <F5> :! node debug %<CR>
 
 "amazing autocompletion that has some weird errors/conflicts maybe?
 Bundle 'Valloric/YouCompleteMe'
@@ -213,13 +241,68 @@ let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
 "silversurfer fast ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
-" Called once right before you start selecting multiple cursors
-"function! Multiple_cursors_before()
-"endfunction
+"respect gitignore with ctrlp <-- not tested
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+"ezscroll.vim <-- should fork this into a plugin at some point
+func! MScroll()
+  let l:done=0
+  let l:n = -1
+  let l:w0 = line("w0")
+  let l:last = line("$")
+  while done!=1
+    let l:g = getchar()
+    if l:g != "\<RightDrag>"
+      let done = 1
+    else
+      if l:n == -1
+        let l:n = v:mouse_lnum
+        let l:fln = v:mouse_lnum
+      else
+        let l:new = l:w0 - v:mouse_lnum + l:n
+        if l:new<1
+          let l:new = 1
+        endif
+
+        let l:diff = -v:mouse_lnum + l:n
+        let l:nd = line("w$")
+        if l:nd+l:diff>l:last
+          let l:new = l:last - winheight(0) + 1
+          if l:new<1
+            let l:new = 1
+          endif
+        end
+
+        let l:wn = "normal ".string(l:new)."zt"
+        if (l:n != v:mouse_lnum)
+          exec(l:wn)
+          redraw
+        endif
+        let l:w0 = line("w0")
+        let l:n = v:mouse_lnum + l:diff
+      endif
+    endif
+  endwhile
+  :call cursor(v:mouse_lnum,v:mouse_col)
+endfunc
+:set mouse=a
+:noremap <silent> <RightMouse> :call MScroll()<CR>
+:noremap <RightRelease> <Nop>
+:noremap <RightDrag> <Nop> 
+
+"disable ycm when using multiple cursors 
+function! Multiple_cursors_before()
+  let g:ycm_auto_trigger = 0
+endfunction
 
 " Called once only when the multiple selection is canceled (default <Esc>)
 "function! Multiple_cursors_after()
 "endfunction
+au BufWritePre *.js call JsBeautify()
+function! Multiple_cursors_after()
+  let g:ycm_auto_trigger = 1
+endfunction
+
 au FileType javascript call SetJSOptions() 
 function SetJSOptions()
   call JavaScriptFold() 
@@ -227,4 +310,3 @@ function SetJSOptions()
   let g:syntastic_auto_loc_list=0
 endfunction
 
-au BufWritePre *.js call JsBeautify()
