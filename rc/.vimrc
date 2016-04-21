@@ -153,6 +153,7 @@ set encoding=utf-8 " Necessary to show Unicode glyphs
 "  \ 'RO': 'RO',
 "  \ }
 "let g:Powerline_dividers_override = ['|', '>', '|', '<']
+"
 let g:airline#extensions#tabline#enabled = 1
 
 set hidden
@@ -166,6 +167,7 @@ set wildmenu
 "sets up code folding
 set foldmethod=syntax
 set foldlevel=99
+set foldlevelstart=99
 "i should get a better color scheme
 "colorscheme noctu
 colorscheme molokai
@@ -293,6 +295,18 @@ function! Multiple_cursors_before()
   let g:ycm_auto_trigger = 0
 endfunction
 
+" Called once only when the multiple selection is canceled (default <Esc>)
+"function! Multiple_cursors_after()
+"endfunction
+au BufWritePre *.js call JsBeautify()
 function! Multiple_cursors_after()
   let g:ycm_auto_trigger = 1
 endfunction
+
+au FileType javascript call SetJSOptions() 
+function SetJSOptions()
+  call JavaScriptFold() 
+  set foldlevelstart=99
+  let g:syntastic_auto_loc_list=0
+endfunction
+
