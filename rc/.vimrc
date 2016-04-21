@@ -53,7 +53,7 @@ Bundle 'vim-scripts/closetag.vim'
 Bundle 'marijnh/tern_for_vim'
 " requires you to do an 'npm install' inside the tern dir
 Bundle 'jelera/vim-javascript-syntax'
-Bundle 'pangloss/vim-javascript'
+"Bundle 'pangloss/vim-javascript'
 Bundle 'einars/js-beautify'
 Bundle 'maksimr/vim-jsbeautify'
 "this requires a 'git submodule update --init --recursive' in it's dir
@@ -125,6 +125,7 @@ set encoding=utf-8 " Necessary to show Unicode glyphs
 "  \ 'RO': 'RO',
 "  \ }
 "let g:Powerline_dividers_override = ['|', '>', '|', '<']
+"
 let g:airline#extensions#tabline#enabled = 1
 
 set hidden
@@ -138,6 +139,7 @@ set wildmenu
 "sets up code folding
 set foldmethod=syntax
 set foldlevel=99
+set foldlevelstart=99
 "i should get a better color scheme
 "colorscheme noctu
 colorscheme molokai
@@ -218,3 +220,11 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 " Called once only when the multiple selection is canceled (default <Esc>)
 "function! Multiple_cursors_after()
 "endfunction
+au FileType javascript call SetJSOptions() 
+function SetJSOptions()
+  call JavaScriptFold() 
+  set foldlevelstart=99
+  let g:syntastic_auto_loc_list=0
+endfunction
+
+au BufWritePre *.js call JsBeautify()
