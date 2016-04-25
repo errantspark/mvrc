@@ -56,7 +56,7 @@ Bundle 'marijnh/tern_for_vim'
 "Bundle 'jelera/vim-javascript-syntax'
 Bundle 'pangloss/vim-javascript'
 "Bundle 'einars/js-beautify'
-Bundle 'maksimr/vim-jsbeautify'
+"Bundle 'maksimr/vim-jsbeautify'
 "no longer sure what this means in the comment below this one, fuck
 "this requires a 'git submodule update --init --recursive' in it's dir
 
@@ -320,9 +320,10 @@ function SetJSOptions()
   nnoremap <localleader>r :TernRefs<CR>
   nnoremap <localleader>R :TernRename<CR>
   nnoremap <localleader>t :TernType<CR>
+  let g:syntastic_javascript_checkers = ['standard']
   "let g:syntastic_auto_loc_list=0
 endfunction
 
-au BufWritePre *.js call JsBeautify()
+"au BufWritePre *.js call JsBeautify()
 au FileType javascript call SetJSOptions() 
 
