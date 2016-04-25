@@ -6,6 +6,8 @@
 set backupdir=~/.vimbackup
 set directory=~/.vimswap
 
+let mapleader = '\'
+
 "fuck the visual bell
 set noerrorbells
 set visualbell
@@ -45,6 +47,7 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-eunuch'
 Bundle 'tpope/vim-ragtag'
 Bundle 'Raimondi/delimitMate'
+Bundle 'easymotion/vim-easymotion'
 
 "javascript shit
 "tern is the thing that does type inference and other cray shit
@@ -289,6 +292,7 @@ endfunc
 :noremap <silent> <RightMouse> :call MScroll()<CR>
 :noremap <RightRelease> <Nop>
 :noremap <RightDrag> <Nop> 
+map <Leader> <Plug>(easymotion-prefix)
 
 "disable ycm when using multiple cursors 
 function! Multiple_cursors_before()
