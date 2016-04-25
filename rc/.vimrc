@@ -123,7 +123,7 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 "maybe turn this off? it might get annoying
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
@@ -298,15 +298,27 @@ endfunction
 " Called once only when the multiple selection is canceled (default <Esc>)
 "function! Multiple_cursors_after()
 "endfunction
-au BufWritePre *.js call JsBeautify()
 function! Multiple_cursors_after()
   let g:ycm_auto_trigger = 1
 endfunction
 
-au FileType javascript call SetJSOptions() 
 function SetJSOptions()
-  call JavaScriptFold() 
+  set fdm=syntax
   set foldlevelstart=99
-  let g:syntastic_auto_loc_list=0
+  let g:maplocalleader = ','
+  nnoremap <localleader>d :TernDef<CR>
+  nnoremap <localleader>Dp :TernDefPreview<CR>
+  nnoremap <localleader>Dt :TernDefTab<CR>
+  nnoremap <localleader>Ds :TernDefSplit<CR>
+  nnoremap <localleader>sd :TernDefSplit<CR>
+  nnoremap <localleader>h :TernDocBrowse<CR>
+  nnoremap <localleader>H :TernDoc<CR>
+  nnoremap <localleader>r :TernRefs<CR>
+  nnoremap <localleader>R :TernRename<CR>
+  nnoremap <localleader>t :TernType<CR>
+  "let g:syntastic_auto_loc_list=0
 endfunction
+
+au BufWritePre *.js call JsBeautify()
+au FileType javascript call SetJSOptions() 
 

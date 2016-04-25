@@ -1,7 +1,17 @@
 #!/bin/bash
 feh --bg-scale bike2.jpg &
 volti &
-stalonetray & nm-applet & clipit &
+stalonetray \
+  --icon-gravity E \
+  --geometry 7x1-0+0 \
+  --max-geometry 7x1-0+0 \
+  --background '#000000' \
+  --skip-taskbar \
+  --icon-size 18 \
+  --kludges force_icons_size \
+  --window-strut none \
+&
+nm-applet & clipit &
 xcompmgr -a &
 
 gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
