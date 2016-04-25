@@ -324,8 +324,8 @@ function SetJSOptions()
   "let g:syntastic_auto_loc_list=0
 endfunction
 
-autocmd bufwritepost *.js silent !standard-format -w %
-set autoread
+"autocmd bufwritepost *.js silent !standard-format -w %
+"set autoread
 "au BufWritePre *.js call JsBeautify()
 au FileType javascript call SetJSOptions() 
 
