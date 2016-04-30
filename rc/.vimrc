@@ -28,6 +28,8 @@ Bundle 'tomasr/molokai'
 Bundle 'vim-scripts/umber-green'
 Bundle 'vim-scripts/very-monochrome-grey-theme'
 Bundle 'vim-scripts/C64.vim'
+Bundle 'ryanpcmcquen/true-monochrome_vim'
+Bundle 'fxn/vim-monochrome'
 
 Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
