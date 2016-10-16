@@ -34,6 +34,7 @@ mkdir $UD/.vim
 mkdir $UD/.vim/colors
 #link up rc files
 cwd=$(pwd)
+ln -s $cwd/misc $UD/.misc
 ln -s $cwd/rc/.zshrc $UD
 ln -s $cwd/rc/.zprofile $UD
 ln -s $cwd/rc/.vimrc $UD

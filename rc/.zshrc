@@ -85,3 +85,20 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 export NVM_DIR="/home/errata/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+function cdt() {
+  cd "$1" && tree -L 1;
+}
+
+function cdk() {
+  cd "$1" && node ~/.misc/haknam.js;
+}
+
+function k() {
+  node ~/.misc/haknam.js;
+}
+
+echo '
+Welcome to walled city.
+'
+k

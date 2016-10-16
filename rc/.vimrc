@@ -30,6 +30,7 @@ Bundle 'vim-scripts/very-monochrome-grey-theme'
 Bundle 'vim-scripts/C64.vim'
 Bundle 'ryanpcmcquen/true-monochrome_vim'
 Bundle 'fxn/vim-monochrome'
+Bundle 'vim-airline/vim-airline-themes'
 
 Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
@@ -235,14 +236,23 @@ let g:html_indent_style1 = "inc"
 "nnoremap <C-n> :call NumberToggle()<cr>
 "enables rainbow perens because DOUBLE RAINBOW ALL THE WAY ACROSS THE LISP
 let g:lisp_rainbow=1
-"TODO decide if i should deprecate this in favor of powerline
-"stop fucking trying to do commands in insert mode
-"autocmd InsertEnter * :hi LineNr ctermbg=11
-"autocmd InsertLeave * :hi LineNr ctermbg=none
+
+"copied from somewhere because indenting was broken
+set lispwords+=public-method,override-method,private-method,syntax-case,syntax-rules
+set lispwords+=..more..
+
+"unbind arrow keys
+for prefix in ['i', 'n', 'v']
+  for key in ['<Up>', '<Down>', '<Left>', '<Right>']
+    exe prefix . "noremap " . key . " <Nop>"
+  endfor
+endfor
+
 "makes ctrlp have line mode
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
+
 "silversurfer fast ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
