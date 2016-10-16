@@ -92,9 +92,6 @@ Bundle 'kovisoft/slimv'
 "glorious everything ide?
 Bundle "zweifisch/pipe2eval"
 
-"debug with node with F5
-nnoremap <F5> :! node debug %<CR>
-
 "amazing autocompletion that has some weird errors/conflicts maybe?
 Bundle 'Valloric/YouCompleteMe'
 "this requires additional shit to be installed so watch out
@@ -102,7 +99,8 @@ Bundle 'Valloric/YouCompleteMe'
 "ctrl+space
 "these two commands should do it
 "cd ~/.vim/bundle/YouCompleteMe
-"./install.sh
+"./install.py --tern-completer
+"making sure you build with tern is important
 
 "go syntax support 
 Bundle 'fatih/vim-go'
@@ -332,7 +330,7 @@ function SetJSOptions()
   nnoremap <localleader>r :TernRefs<CR>
   nnoremap <localleader>R :TernRename<CR>
   nnoremap <localleader>t :TernType<CR>
-  let g:syntastic_javascript_checkers = ['standard']
+  "let g:syntastic_javascript_checkers = ['standard']
   "let g:syntastic_auto_loc_list=0
 endfunction
 
