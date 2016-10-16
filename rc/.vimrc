@@ -69,22 +69,6 @@ Bundle 'HerringtonDarkholme/yats.vim'
 "typescript tools
 Bundle 'Quramy/tsuquyomi'
 
-let g:ycm_semantic_triggers =  {
-            \   'c' : ['->', '.'],
-            \   'objc' : ['->', '.'],
-            \   'ocaml' : ['.', '#'],
-            \   'cpp,objcpp' : ['->', '.', '::'],
-            \   'perl' : ['->'],
-            \   'php' : ['->', '::', '"', "'", 'use ', 'namespace ', '\'],
-            \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-            \   'html': ['<', '"', '</', ' '],
-            \   'vim' : ['re![_a-za-z]+[_\w]*\.'],
-            \   'ruby' : ['.', '::'],
-            \   'lua' : ['.', ':'],
-            \   'erlang' : [':'],
-            \   'haskell' : ['.', 're!.']
-            \ }
-
 
 "glorious LISP IDE
 Bundle 'kovisoft/slimv'
@@ -119,6 +103,24 @@ autocmd CompleteDone * pclose
 
 "this maps Ctrl+O to open up a newline inside parens
 imap <C-o> <CR><Esc>O
+
+"set up ycm triggers (autocomplete after typing . in js for ex)
+let g:ycm_semantic_triggers =  {
+            \   'c' : ['->', '.'],
+            \   'objc' : ['->', '.'],
+            \   'ocaml' : ['.', '#'],
+            \   'cpp,objcpp' : ['->', '.', '::'],
+            \   'perl' : ['->'],
+            \   'php' : ['->', '::', '"', "'", 'use ', 'namespace ', '\'],
+            \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+            \   'html': ['<', '"', '</', ' '],
+            \   'vim' : ['re![_a-za-z]+[_\w]*\.'],
+            \   'ruby' : ['.', '::'],
+            \   'lua' : ['.', ':'],
+            \   'erlang' : [':'],
+            \   'haskell' : ['.', 're!.']
+            \ }
+
 
 "recommended settings for syntastic
 set statusline+=%#warningmsg#
@@ -330,7 +332,7 @@ function SetJSOptions()
   nnoremap <localleader>r :TernRefs<CR>
   nnoremap <localleader>R :TernRename<CR>
   nnoremap <localleader>t :TernType<CR>
-  "let g:syntastic_javascript_checkers = ['standard']
+  let g:syntastic_javascript_checkers = ['eshint']
   "let g:syntastic_auto_loc_list=0
 endfunction
 

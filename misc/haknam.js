@@ -1,30 +1,17 @@
-RNG(seed) {
+let RNG = function(seed) {
   // LCG using GCC's constants
-  this.m = 0x80000000; // 2**31;
-  this.a = 1103515245;
-  this.c = 12345;
-
-  this.state = seed ? seed : Math.floor(Math.random() * (this.m-1));
-}
-RNG.prototype.nextInt = function() {
-  this.state = (this.a * this.state + this.c) % this.m;
-  return this.state;
-}
-RNG.prototype.nextFloat = function() {
-  // returns in range [0,1]
-  return this.nextInt() / (this.m - 1);
-}
-RNG.prototype.nextRange = function(start, end) {
-  // returns in range [start, end): including start, excluding end
-  // can't modulu nextInt because of weak randomness in lower bits
-  var rangeSize = end - start;
-  var randomUnder1 = this.nextInt() / this.m;
-  return start + Math.floor(randomUnder1 * rangeSize);
-}
-RNG.prototype.choice = function(array) {
-  return array[this.nextRange(0, array.length)];
+  return function() {
+    seed = (seed * 9301 + 49297) % 233280; 
+    return seed
+  }
 }
 let pwd = process.env.PWD
-let seed = RNG(pwd)
-console.log(seed)
+let pnum = parseInt(Array.prototype.slice.call(pwd).map(x => x.charCodeAt(0)%3).join(''),3)
+let seed = RNG(pnum)
+let skyline = new Array(80).fill(0)
+let lines = new Array(5).fill(0)
+lines[0] = skyline.map(x => seed()/233280 > 0.5)
 
+lines.forEach((x,i) => lines[i+1] = x.map(e=> e ? seed()/233280 > 0.01 : seed()/233280 > 0.5))
+lines = lines.map(x => x.map(el => el ? '#':' ').join(''))
+lines.forEach(x => console.log(x))
