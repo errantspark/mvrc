@@ -7,9 +7,24 @@ let rng = function(seed) {
 let pwd = process.env.PWD
 let pnum = parseInt(Array.prototype.slice.call(pwd).map(x => x.charCodeAt(0)%3).join(''),3)
 let seed = rng(pnum)
-let skyline = new Array(80).fill(0)
-let lines = new Array(5).fill(0)
-lines[0] = skyline.map(x => seed()/233280 > 0.5)
-lines.forEach((x,i) => lines[i+1] = x.map(e=> e ? seed()/233280 > 0.01 : seed()/233280 > 0.5))
-lines = lines.map(x => x.map(el => el ? '#':' ').join(''))
+let skyline = new Array(20).fill(0)
+let lines = new Array(9).fill(0)
+const MOD = 7
+lines[0] = skyline.map(x => seed()/233280 > 0.2?0:1)
+let blocks = new Array(MOD+1).fill('    ')
+let tiles = ['|__=','|###','|==+','|#-#','|-##','|-_#','|*#_']
+blocks.splice(0,tiles.length,...tiles)
+lines.forEach((x,i) => {
+  lines[i+1] = x.map(e=> {
+    let next = seed()
+    if (e > 0){
+      return seed()/233280 > 0.2 ? next%MOD == 0 ? next%MOD+1 : next%MOD : e
+    } else {
+      return seed()/233280 > 0.33 ? next%MOD == MOD-1 ? MOD : next%MOD : e
+    }
+  })
+})
+lines = lines.map(x => x.map(el => blocks[MOD-el]).join(''))
+//lines = lines.map(x => x.map(el => blocks[MOD-el]))
+//lines = lines.map(x=> x.map(el => MOD-el))
 lines.forEach(x => console.log(x))

@@ -6,7 +6,7 @@
 set backupdir=~/.vimbackup
 set directory=~/.vimswap
 
-let mapleader = '\'
+"let mapleader = '\'
 
 "fuck the visual bell
 set noerrorbells
@@ -238,8 +238,8 @@ let g:html_indent_style1 = "inc"
 let g:lisp_rainbow=1
 
 "copied from somewhere because indenting was broken
-set lispwords+=public-method,override-method,private-method,syntax-case,syntax-rules
-set lispwords+=..more..
+"set lispwords+=public-method,override-method,private-method,syntax-case,syntax-rules
+"set lispwords+=..more..
 
 "unbind arrow keys
 for prefix in ['i', 'n', 'v']
