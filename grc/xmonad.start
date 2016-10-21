@@ -14,6 +14,6 @@ stalonetray \
 nm-applet & clipit &
 xcompmgr -a &
 
-gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
-
+gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh &
+eval `dbus-launch --auto-syntax`
 exec xmonad 

@@ -37,6 +37,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mileszs/ack.vim'
+Bundle 'vim-scripts/nerdtree-ack'
 Bundle 'goldfeld/vim-seek'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'nathanaelkane/vim-indent-guides'
@@ -65,6 +66,9 @@ Bundle 'pangloss/vim-javascript'
 
 "type script syntax highlighting
 Bundle 'HerringtonDarkholme/yats.vim'
+
+"elixir syntax highlighting
+Bundle 'elixir-lang/vim-elixir'
 
 "typescript tools
 Bundle 'Quramy/tsuquyomi'
@@ -336,8 +340,11 @@ function SetJSOptions()
   "let g:syntastic_auto_loc_list=0
 endfunction
 
-"autocmd bufwritepost *.js silent !standard-format -w %
-"set autoread
+function StandardFormat()
+  silent !standard-format -w %
+endfunction
 "au BufWritePre *.js call JsBeautify()
 au FileType javascript call SetJSOptions() 
 
+"debug with node with F5
+"nnoremap <F5> :! node debug %<CR>
