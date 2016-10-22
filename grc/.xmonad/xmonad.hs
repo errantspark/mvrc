@@ -45,6 +45,8 @@ myConfig = Emwh.ewmh defaultConfig { modMask = mod4Mask,
       ("M-u", focusUrgent)]
     `additionalKeys` [((0, 0x1008FF12), spawn "amixer -q set Master toggle")
     , ((0, 0x1008FF11), spawn "amixer -q set Master 10%-")
+    , ((0, 0x1008FF02), spawn "xbacklight -inc 15")
+    , ((0, 0x1008FF03), spawn "xbacklight -dec 15")
     , ((0, 0x1008FF13), spawn "amixer -q set Master 10%+")]
 
 --myLayout = avoidStruts (

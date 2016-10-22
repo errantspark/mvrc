@@ -13,6 +13,8 @@ stalonetray \
 &
 nm-applet & clipit &
 xcompmgr -a &
+#synaptics
+synclient HorizTwoFingerScroll=1 PalmDetect=1 AccelFactor=0.035 HorizScrollDelta=-28 VertScrollDelta=-114 &
 
 gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh &
 eval `dbus-launch --auto-syntax`
