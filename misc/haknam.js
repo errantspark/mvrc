@@ -1,6 +1,6 @@
 let rng = function(seed) {
   return function() {
-    seed = (seed * 9301 + 49297) % 233280; 
+    seed = (seed * 9301 + 49297) % 233280 
     return seed
   }
 }

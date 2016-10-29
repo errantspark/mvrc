@@ -1,4 +1,5 @@
 import XMonad hiding ( (|||) )
+import XMonad.Actions.CycleWS
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.Minimize
 import XMonad.Layout.LimitWindows
@@ -33,9 +34,11 @@ myConfig = Emwh.ewmh defaultConfig { modMask = mod4Mask,
   } `additionalKeysP`
     [
       --("M-S-q", do {setLimit 6; sendMessage $ JumpToLayout "Spiral"}),
+      --("M-i", nextWS),
+      --("M-o", prevWS),
       ("M-f", sendMessage $ JumpToLayout "Full"),
-      ("M-g", sendMessage $ JumpToLayout "ThreeCol"),
-      ("M-<Space>", do {setLimit 6; sendMessage $ JumpToLayout "Spiral"}),
+      ("M-<Space>", sendMessage $ JumpToLayout "ThreeCol"),
+      ("M-g", do {setLimit 6; sendMessage $ JumpToLayout "Spiral"}),
       ("M-d",do {setLimit 100; sendMessage $ JumpToLayout "Tall"}),
       ("M-m", withFocused $ minimizeWindow),
       ("M-S-m", sendMessage $ RestoreNextMinimizedWin),
@@ -43,11 +46,11 @@ myConfig = Emwh.ewmh defaultConfig { modMask = mod4Mask,
       ("M--", decreaseLimit),
       ("M-b", sendMessage ToggleStruts),
       ("M-u", focusUrgent)]
-    `additionalKeys` [((0, 0x1008FF12), spawn "amixer -q set Master toggle")
-    , ((0, 0x1008FF11), spawn "amixer -q set Master 10%-")
+    `additionalKeys` [((0, 0x1008FF12), spawn "amixer -q -c 1 set Master toggle & amixer -q -c 1 set Speaker on")
+    , ((0, 0x1008FF11), spawn "amixer -q -c 1 set Master 10%-")
     , ((0, 0x1008FF02), spawn "xbacklight -inc 15")
     , ((0, 0x1008FF03), spawn "xbacklight -dec 15")
-    , ((0, 0x1008FF13), spawn "amixer -q set Master 10%+")]
+    , ((0, 0x1008FF13), spawn "amixer -q -c 1 set Master 10%+")]
 
 --myLayout = avoidStruts (
     --    Tall 1 (3/100) (1/2) |||
