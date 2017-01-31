@@ -52,15 +52,11 @@ myConfig = Emwh.ewmh defaultConfig { modMask = mod4Mask,
           | (key, scr)  <- zip "wer" [2,0,1] -- was [0..] *** change to match your screen order ***
           , (action, mask) <- [ (W.view, "") , (W.shift, "S-")]
       ])
-    `additionalKeys` [((0, 0x1008FF12), spawn "amixer -q set Master toggle")
-    , ((0, 0x1008FF11), spawn "amixer -q set Master 10%-")
-    , ((0, 0x1008FF13), spawn "amixer -q set Master 10%+")]
---laptop stuff
---    `additionalKeys` [((0, 0x1008FF12), spawn "amixer -q -c 1 set Master toggle & amixer -q -c 1 set Speaker on")
---    , ((0, 0x1008FF11), spawn "amixer -q -c 1 set Master 10%-")
---    , ((0, 0x1008FF02), spawn "xbacklight -inc 15")
---    , ((0, 0x1008FF03), spawn "xbacklight -dec 15")
---    , ((0, 0x1008FF13), spawn "amixer -q -c 1 set Master 10%+")]
+      `additionalKeys` [((0, 0x1008FF12), spawn "amixer -q -c 1 set Master toggle & amixer -q -c 1 set Speaker on")
+      , ((0, 0x1008FF11), spawn "amixer -q -c 1 set Master 10%-")
+      , ((0, 0x1008FF02), spawn "xbacklight -inc 15")
+      , ((0, 0x1008FF03), spawn "xbacklight -dec 15")
+      , ((0, 0x1008FF13), spawn "amixer -q -c 1 set Master 10%+")]
 --
 --myLayout = avoidStruts (
     --    Tall 1 (3/100) (1/2) |||
