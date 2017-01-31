@@ -24,13 +24,13 @@ hi ColorColumn guibg=#122542
 hi SpecialComment guifg=#A9EE8A guibg=NONE guisp=NONE gui=NONE ctermfg=156 ctermbg=NONE cterm=NONE
 hi Typedef guifg=#55AAFF guibg=NONE guisp=NONE gui=bold,italic ctermfg=75 ctermbg=NONE cterm=bold
 hi Title guifg=#83cbdb guibg=NONE guisp=NONE gui=bold ctermfg=116 ctermbg=NONE cterm=bold
-hi Folded guifg=#000000 guibg=#FFC0C0 guisp=#FFC0C0 gui=NONE ctermfg=NONE ctermbg=217 cterm=NONE
+hi Folded guifg=#000000 guibg=#FFC0C0 guisp=#FFC0C0 gui=NONE ctermfg=8 ctermbg=NONE cterm=NONE
 hi PreCondit guifg=#F9449A guibg=NONE guisp=NONE gui=NONE ctermfg=13 ctermbg=NONE cterm=NONE
 hi Include guifg=#F9449A guibg=NONE guisp=NONE gui=NONE ctermfg=13 ctermbg=NONE cterm=NONE
 hi Float guifg=#A9EE5A guibg=NONE guisp=NONE gui=bold,italic ctermfg=155 ctermbg=NONE cterm=bold
 hi StatusLineNC guifg=#5c5d73 guibg=#1a1529 guisp=#1a1529 gui=NONE ctermfg=60 ctermbg=235 cterm=NONE
 "hi CTagsMember -- no settings --
-hi NonText guifg=#9FADC5 guibg=#233654 guisp=#233654 gui=NONE ctermfg=146 ctermbg=17 cterm=NONE
+hi NonText guifg=#9FADC5 guibg=#233654 guisp=#233654 gui=NONE ctermfg=146 ctermbg=NONE cterm=NONE
 "hi CTagsGlobalConstant -- no settings --
 "hi DiffText -- no settings --
 "hi ErrorMsg -- no settings --
@@ -40,18 +40,18 @@ hi PMenuSbar guifg=NONE guibg=#848688 guisp=#848688 gui=NONE ctermfg=NONE ctermb
 hi Identifier guifg=#a584bd guibg=NONE guisp=NONE gui=bold ctermfg=139 ctermbg=NONE cterm=NONE
 hi SpecialChar guifg=#A9EE8A guibg=NONE guisp=NONE gui=NONE ctermfg=156 ctermbg=NONE cterm=NONE
 hi Conditional guifg=#f7e631 guibg=NONE guisp=NONE gui=NONE ctermfg=75 ctermbg=NONE cterm=bold
-hi StorageClass guifg=#55AAFF guibg=NONE guisp=NONE gui=bold,italic ctermfg=75 ctermbg=NONE cterm=bold
+hi StorageClass guifg=#55AAFF guibg=NONE guisp=NONE gui=bold,italic ctermfg=75 ctermbg=NONE cterm=italic
 hi Todo guifg=#FFFFFF guibg=#c71010 guisp=#c71010 gui=bold ctermfg=15 ctermbg=1 cterm=bold
 hi Special guifg=#c74d64 guibg=NONE guisp=NONE gui=NONE ctermfg=168 ctermbg=NONE cterm=NONE
 hi LineNr guifg=#7592b3 guibg=#1a202b guisp=#1a202b gui=NONE ctermfg=67 ctermbg=235 cterm=NONE
 hi StatusLine guifg=#c4d8ff guibg=#28336e guisp=#28336e gui=bold ctermfg=153 ctermbg=17 cterm=bold
-hi Normal guifg=#ebead9 guibg=#13131f guisp=#13131f gui=NONE ctermfg=230 ctermbg=234 cterm=NONE
+hi Normal guifg=#ebead9 guibg=#13131f guisp=#13131f gui=NONE ctermfg=230 ctermbg=NONE cterm=NONE
 hi Label guifg=#55AAFF guibg=NONE guisp=NONE gui=bold,italic ctermfg=75 ctermbg=NONE cterm=bold
 "hi CTagsImport -- no settings --
 hi PMenuSel guifg=#f5f0f4 guibg=#bd173e guisp=#bd173e gui=NONE ctermfg=255 ctermbg=1 cterm=NONE
 hi Search guifg=#000020 guibg=#ffffff guisp=#ffffff gui=NONE ctermfg=17 ctermbg=15 cterm=NONE
 "hi CTagsGlobalVariable -- no settings --
-hi Delimiter guifg=#A9EE8A guibg=NONE guisp=NONE gui=NONE ctermfg=156 ctermbg=NONE cterm=NONE
+hi Delimiter guifg=#A9EE8A guibg=NONE guisp=NONE gui=NONE ctermfg=156 ctermbg=NONE cterm=italic
 hi Statement guifg=#ff752b guibg=NONE guisp=NONE gui=bold ctermfg=221 ctermbg=NONE cterm=bold
 "hi SpellRare -- no settings --
 "hi EnumerationValue -- no settings --

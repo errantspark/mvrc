@@ -103,7 +103,7 @@ filetype plugin indent on  "also required
 
 "this makes the completion preview window close after completion (ycm)
 "see also :echo &completeopt
-autocmd CompleteDone * pclose
+"autocmd CompleteDone * pclose
 
 "this maps Ctrl+O to open up a newline inside parens
 imap <C-o> <CR><Esc>O
@@ -179,8 +179,8 @@ set foldmethod=syntax
 set foldlevel=99
 set foldlevelstart=99
 "i should get a better color scheme
-"colorscheme noctu
-colorscheme molokai
+colorscheme orchid
+"colorscheme molokai
 "makes molokai nicer for 256 color use
 let g:rehash256 = 1
 "tabstop sets how many spaces a tab should be displayed as
@@ -336,7 +336,20 @@ function SetJSOptions()
   nnoremap <localleader>r :TernRefs<CR>
   nnoremap <localleader>R :TernRename<CR>
   nnoremap <localleader>t :TernType<CR>
+  map <localleader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
+  "conceal js stuff maybe is fun and good
+  let g:javascript_conceal_function             = "ƒ"
+  let g:javascript_conceal_null                 = "ø"
+  let g:javascript_conceal_this                 = "@"
+  let g:javascript_conceal_return               = "⇚"
+  let g:javascript_conceal_undefined            = "¿"
+  let g:javascript_conceal_NaN                  = "ℕ"
+  let g:javascript_conceal_prototype            = "¶"
+  let g:javascript_conceal_static               = "•"
+  let g:javascript_conceal_super                = "Ω"
+  let g:javascript_conceal_arrow_function       = "⇒"
   let g:syntastic_javascript_checkers = ['eshint']
+  syntax enable
   "let g:syntastic_auto_loc_list=0
 endfunction
 
@@ -348,3 +361,24 @@ au FileType javascript call SetJSOptions()
 
 "debug with node with F5
 "nnoremap <F5> :! node debug %<CR>
+"helper fucntions for editing color schermes
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+function! SynGroup()                                                            
+  let l:s = synID(line('.'), col('.'), 1)                                       
+  echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
+
+function! SynBg()                                                            
+  echo synIDattr(synIDtrans(synID(line("."), col("."), 1)), "bg")
+endfun
+
+function! SynFg()                                                            
+  echo synIDattr(synIDtrans(synID(line("."), col("."), 1)), "fg")
+endfun
+
