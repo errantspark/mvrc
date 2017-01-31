@@ -12,6 +12,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.UrgencyHook
 import XMonad.Hooks.ManageDocks
 import Data.Ratio
+import qualified XMonad.StackSet as W
 import qualified XMonad.Hooks.EwmhDesktops as Emwh
 
 main = xmonad =<< xmobar myConfig 
@@ -32,7 +33,7 @@ myConfig = Emwh.ewmh defaultConfig { modMask = mod4Mask,
     terminal = "urxvt"
       --terminal = "gnome-terminal"
   } `additionalKeysP`
-    [
+    ([
       --("M-S-q", do {setLimit 6; sendMessage $ JumpToLayout "Spiral"}),
       --("M-i", nextWS),
       --("M-o", prevWS),
@@ -46,12 +47,21 @@ myConfig = Emwh.ewmh defaultConfig { modMask = mod4Mask,
       ("M--", decreaseLimit),
       ("M-b", sendMessage ToggleStruts),
       ("M-u", focusUrgent)]
-    `additionalKeys` [((0, 0x1008FF12), spawn "amixer -q -c 1 set Master toggle & amixer -q -c 1 set Speaker on & amixer -q -c 1 set Headphone on")
-    , ((0, 0x1008FF11), spawn "amixer -q -c 1 set Master 10%-")
-    , ((0, 0x1008FF02), spawn "xbacklight -inc 15")
-    , ((0, 0x1008FF03), spawn "xbacklight -dec 15")
-    , ((0, 0x1008FF13), spawn "amixer -q -c 1 set Master 10%+")]
-
+    ++
+      [ (mask ++ "M-" ++ [key], screenWorkspace scr >>= flip whenJust (windows . action))
+          | (key, scr)  <- zip "wer" [2,0,1] -- was [0..] *** change to match your screen order ***
+          , (action, mask) <- [ (W.view, "") , (W.shift, "S-")]
+      ])
+    `additionalKeys` [((0, 0x1008FF12), spawn "amixer -q set Master toggle")
+    , ((0, 0x1008FF11), spawn "amixer -q set Master 10%-")
+    , ((0, 0x1008FF13), spawn "amixer -q set Master 10%+")]
+--laptop stuff
+--    `additionalKeys` [((0, 0x1008FF12), spawn "amixer -q -c 1 set Master toggle & amixer -q -c 1 set Speaker on")
+--    , ((0, 0x1008FF11), spawn "amixer -q -c 1 set Master 10%-")
+--    , ((0, 0x1008FF02), spawn "xbacklight -inc 15")
+--    , ((0, 0x1008FF03), spawn "xbacklight -dec 15")
+--    , ((0, 0x1008FF13), spawn "amixer -q -c 1 set Master 10%+")]
+--
 --myLayout = avoidStruts (
     --    Tall 1 (3/100) (1/2) |||
 --    Mirror (Tall 1 (3/100) (1/2))) |||
