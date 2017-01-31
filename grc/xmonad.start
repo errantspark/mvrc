@@ -15,6 +15,16 @@ stalonetray \
 &
 nm-applet & clipit &
 xcompmgr -a &
+#synaptics
+
+# disable synaptic native handling 2- and 3-finger gestures 
+# so that touchegg gets the notifications
+#synclient TapButton2=0 TapButton3=0 ClickFinger2=0 ClickFinger3=0 HorizTwoFingerScroll=0 VertTwoFingerScroll=0 &
+
+synclient HorizTwoFingerScroll=1 PalmDetect=1 AccelFactor=0.035 HorizScrollDelta=-28 VertScrollDelta=-114 &
+# start touchegg
+touchegg &
+
 
 gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh &
 eval `dbus-launch --auto-syntax`

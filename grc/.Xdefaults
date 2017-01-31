@@ -3,7 +3,7 @@
 !-------------------------------------------------------------------------------
 
 Xft.dpi:                    96
-Xft.antialias:              true
+Xft.antialias:              false
 Xft.rgba:                   rgb
 Xft.hinting:                true
 Xft.hintstyle:              hintslight
@@ -32,9 +32,14 @@ urxvt*shading: 20
 
 URxvt*saveLines: 12000
 ! Fonts
-URxvt*font: xft:terminus:pixelsize=15
-URxvt*boldFont: xft:terminus:bold:pixelsize=15
+!URxvt*font: xft:creep:pixelsize=15
+!URxvt*boldFont:  xft:creep:pixelsize=15
 ! this makes it so that bold doesn't change font color
+URxvt*font:  xft:ProggyCleanTTSZ:style=regular:pixelsize=16
+URxvt*boldFont:  xft:ProggyCleanTTSZ:style=bold:pixelsize=16
+
+!URxvt*font: -*-creep-*-*-*-*-*-*-*-*-*-*-*-*
+!URxvt*boldFont: -*-creep-*-*-*-*-*-*-*-*-*-*-*-*
 URxvt.intensityStyles: false
 
 !URxvt.allow_bold:           false
@@ -53,7 +58,7 @@ URxvt.scrollBar:            false
 ! Perl extensions
 URxvt.perl-ext-common:      default,matcher
 URxvt.matcher.button:       1
-URxvt.urlLauncher:          chromium-browser
+URxvt.url-launcher:         chromium-browser
 
 ! Cursor
 URxvt.cursorBlink:          true

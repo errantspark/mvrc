@@ -13,7 +13,7 @@
 Config {
   -- Set font and default foreground/background colors. Note that
   -- the height of xmobar is controlled by the font you use.
-  font = "xft:terminus:pixelsize=15",
+  font = "xft:ProggyCleanTTSZ:style=regular:pixelsize=16",
   bgColor = "black",
   fgColor = "grey",
 
@@ -50,7 +50,13 @@ Config {
     -- This is because the built-in volume support in xmobar is disabled
     -- in Debian and derivatives like Ubuntu.
     -- Run Com "~/.xmonad/get-volume" [] "myvolume" 10
-    
+  Run BatteryP ["BAT0"]
+              ["-t", "<acstatus><watts> (<left>%)",
+               "-L", "10", "-H", "80", "-p", "3",
+               "--", "-O", "<fc=green>On</fc> - ", "-i", "",
+               "-L", "-15", "-H", "-5",
+               "-l", "red", "-m", "blue", "-h", "green"]
+              60   ,
     -- This line tells xmobar to read input from stdin. That's how we
     -- get the information that xmonad is sending it for display.
     Run StdinReader
@@ -65,6 +71,6 @@ Config {
 
    -- Overall template for the layout of the xmobar contents. Note that
    -- space is significant and can be used to add padding.
-   template = " %KNUQ% } %StdinReader% {  %cpu% | %memory% | <fc=#e6744c>%date%</fc> "
+   template = " %KNUQ% } %StdinReader% { %battery% | %cpu% | %memory% | <fc=#e6744c>%date%</fc> "
    -- template = "%StdinReader% }{ %KNUQ% | %battery% | %cpu% | %memory% | Vol: %myvolume% <fc=#e6744c>%date%</fc> "
 }
