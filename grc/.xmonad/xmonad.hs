@@ -46,7 +46,7 @@ myConfig = Emwh.ewmh defaultConfig { modMask = mod4Mask,
       ("M--", decreaseLimit),
       ("M-b", sendMessage ToggleStruts),
       ("M-u", focusUrgent)]
-    `additionalKeys` [((0, 0x1008FF12), spawn "amixer -q -c 1 set Master toggle & amixer -q -c 1 set Speaker on")
+    `additionalKeys` [((0, 0x1008FF12), spawn "amixer -q -c 1 set Master toggle & amixer -q -c 1 set Speaker on & amixer -q -c 1 set Headphone on")
     , ((0, 0x1008FF11), spawn "amixer -q -c 1 set Master 10%-")
     , ((0, 0x1008FF02), spawn "xbacklight -inc 15")
     , ((0, 0x1008FF03), spawn "xbacklight -dec 15")
