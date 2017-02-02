@@ -1,7 +1,7 @@
 #!/bin/bash
 #feh --bg-scale bike2.jpg &
 nitrogen --restore &
-xset +fp /home/red/lambda/Orp-Font/misc &
+xset +fp /home/errata/lambda/Orp-Font/misc &
 volti &
 stalonetray \
   --icon-gravity E \
