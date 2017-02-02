@@ -96,6 +96,9 @@ Bundle 'fatih/vim-go'
 "rust syntax support
 Bundle 'rust-lang/rust.vim'
 
+"zeal one button
+Bundle 'KabbAmine/zeavim.vim'
+
 "all plugin imports have to happen before this line
 call vundle#end()            " required
 filetype plugin indent on  "also required
@@ -323,6 +326,7 @@ function! Multiple_cursors_after()
 endfunction
 
 function SetJSOptions()
+  Docset threejs,javascript
   set fdm=syntax
   set foldlevelstart=99
   let g:maplocalleader = ','
@@ -336,6 +340,7 @@ function SetJSOptions()
   nnoremap <localleader>r :TernRefs<CR>
   nnoremap <localleader>R :TernRename<CR>
   nnoremap <localleader>t :TernType<CR>
+  nnoremap <localleader>z :Zeavim<CR>
   map <localleader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
   "conceal js stuff maybe is fun and good
   let g:javascript_conceal_function             = "ƒ"
