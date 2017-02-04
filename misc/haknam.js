@@ -12,6 +12,7 @@ let lines = new Array(9).fill(0)
 const MOD = 7
 lines[0] = skyline.map(x => seed()/233280 > 0.2?0:1)
 let blocks = new Array(MOD+1).fill('    ')
+//TODO add tv aerials 
 let tiles = ['|__=','|###','|==+','|#-#','|-##','|-_#','|*#_']
 blocks.splice(0,tiles.length,...tiles)
 lines.forEach((x,i) => {
@@ -25,6 +26,4 @@ lines.forEach((x,i) => {
   })
 })
 lines = lines.map(x => x.map(el => blocks[MOD-el]).join(''))
-//lines = lines.map(x => x.map(el => blocks[MOD-el]))
-//lines = lines.map(x=> x.map(el => MOD-el))
 lines.forEach(x => console.log(x))
