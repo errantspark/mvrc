@@ -24,6 +24,7 @@ myLayouts = minimize (limitWindows 6 $
   spiral (6/7) |||
   ThreeCol 1 (3/100) (1/2) |||
   Tall 1 (3/100) (21/34) |||
+  Mirror (Tall 1 (3/100) (1/2)) |||
   noBorders (fullscreenFull Full))
 
 myConfig = Emwh.ewmh defaultConfig { modMask = mod4Mask,
@@ -38,6 +39,7 @@ myConfig = Emwh.ewmh defaultConfig { modMask = mod4Mask,
       --("M-i", nextWS),
       --("M-o", prevWS),
       ("M-f", sendMessage $ JumpToLayout "Full"),
+      ("M-s",do {setLimit 100; sendMessage $ JumpToLayout "Mirror Tall"}),
       ("M-<Space>", sendMessage $ JumpToLayout "ThreeCol"),
       ("M-g", do {setLimit 6; sendMessage $ JumpToLayout "Spiral"}),
       ("M-d",do {setLimit 100; sendMessage $ JumpToLayout "Tall"}),

@@ -80,11 +80,8 @@ Bundle 'kovisoft/slimv'
 "glorious everything ide?
 Bundle "zweifisch/pipe2eval"
 
-"let's try something else
-Bundle "Shougo/neocomplete.vim"
-
 "amazing autocompletion that has some weird errors/conflicts maybe?
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
 "this requires additional shit to be installed so watch out
 "also you don't get semantic completion at the top level without pressing
 "ctrl+space
@@ -115,20 +112,20 @@ filetype plugin indent on  "also required
 imap <C-o> <CR><Esc>O
 
 "set up ycm triggers (autocomplete after typing . in js for ex)
-"let g:ycm_semantic_triggers =  {
-"            \   'c' : ['->', '.'],
-"            \   'objc' : ['->', '.'],
-"            \   'ocaml' : ['.', '#'],
-"            \   'cpp,objcpp' : ['->', '.', '::'],
-"            \   'perl' : ['->'],
-"            \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-"            \   'html': ['<', '"', '</', ' '],
-"            \   'vim' : ['re![_a-za-z]+[_\w]*\.'],
-"            \   'ruby' : ['.', '::'],
-"            \   'lua' : ['.', ':'],
-"            \   'erlang' : [':'],
-"            \   'haskell' : ['.', 're!.']
-"            \ }
+let g:ycm_semantic_triggers =  {
+            \   'c' : ['->', '.'],
+            \   'objc' : ['->', '.'],
+            \   'ocaml' : ['.', '#'],
+            \   'cpp,objcpp' : ['->', '.', '::'],
+            \   'perl' : ['->'],
+            \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+            \   'html': ['<', '"', '</', ' '],
+            \   'vim' : ['re![_a-za-z]+[_\w]*\.'],
+            \   'ruby' : ['.', '::'],
+            \   'lua' : ['.', ':'],
+            \   'erlang' : [':'],
+            \   'haskell' : ['.', 're!.']
+            \ }
 
 
 "recommended settings for syntastic
@@ -386,21 +383,3 @@ endfun
 function! SynFg()                                                            
   echo synIDattr(synIDtrans(synID(line("."), col("."), 1)), "fg")
 endfun
-
-"neocomplete shit
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=tern#Complete
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
