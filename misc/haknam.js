@@ -1,14 +1,14 @@
-let rng = function(seed) {
+let rng = seed => {
   return function() {
     seed = (seed * 9301 + 49297) % 233280 
     return seed
   }
 }
 let pwd = process.env.PWD
-let pnum = parseInt(Array.prototype.slice.call(pwd).map(x => x.charCodeAt(0)%3).join(''),3)
+let pnum = parseInt([...pwd].map(x => x.charCodeAt(0)%3).join(''),3)
 let seed = rng(pnum)
 let skyline = new Array(20).fill(0)
-let lines = new Array(9).fill(0)
+let lines = new Array(14).fill(0)
 const MOD = 7
 lines[0] = skyline.map(x => seed()/233280 > 0.2?0:1)
 let blocks = new Array(MOD+1).fill('    ')
