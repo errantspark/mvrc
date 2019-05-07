@@ -1,5 +1,7 @@
 import XMonad hiding ( (|||) )
+import XMonad.Config.Kde
 import XMonad.Actions.CycleWS
+import XMonad.Actions.Minimize
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.Minimize
 import XMonad.Layout.LimitWindows
@@ -24,7 +26,6 @@ myLayouts = minimize (limitWindows 6 $
   spiral (6/7) |||
   ThreeCol 1 (3/100) (1/2) |||
   Tall 1 (3/100) (21/34) |||
-  Mirror (Tall 1 (3/100) (1/2)) |||
   noBorders (fullscreenFull Full))
 
 myConfig = Emwh.ewmh defaultConfig { modMask = mod4Mask,
@@ -39,12 +40,11 @@ myConfig = Emwh.ewmh defaultConfig { modMask = mod4Mask,
       --("M-i", nextWS),
       --("M-o", prevWS),
       ("M-f", sendMessage $ JumpToLayout "Full"),
-      ("M-s",do {setLimit 100; sendMessage $ JumpToLayout "Mirror Tall"}),
       ("M-<Space>", sendMessage $ JumpToLayout "ThreeCol"),
       ("M-g", do {setLimit 6; sendMessage $ JumpToLayout "Spiral"}),
       ("M-d",do {setLimit 100; sendMessage $ JumpToLayout "Tall"}),
       ("M-m", withFocused $ minimizeWindow),
-      ("M-S-m", sendMessage $ RestoreNextMinimizedWin),
+      ("M-S-m", withLastMinimized $ maximizeWindowAndFocus),
       ("M-=", increaseLimit),
       ("M--", decreaseLimit),
       ("M-b", sendMessage ToggleStruts),
@@ -54,15 +54,11 @@ myConfig = Emwh.ewmh defaultConfig { modMask = mod4Mask,
           | (key, scr)  <- zip "wer" [2,0,1] -- was [0..] *** change to match your screen order ***
           , (action, mask) <- [ (W.view, "") , (W.shift, "S-")]
       ])
-    `additionalKeys` [((0, 0x1008FF12), spawn "amixer -q set Master toggle")
-    , ((0, 0x1008FF11), spawn "amixer -q set Master 10%-")
-    , ((0, 0x1008FF13), spawn "amixer -q set Master 10%+")]
---laptop stuff
---    `additionalKeys` [((0, 0x1008FF12), spawn "amixer -q -c 1 set Master toggle & amixer -q -c 1 set Speaker on")
---    , ((0, 0x1008FF11), spawn "amixer -q -c 1 set Master 10%-")
---    , ((0, 0x1008FF02), spawn "xbacklight -inc 15")
---    , ((0, 0x1008FF03), spawn "xbacklight -dec 15")
---    , ((0, 0x1008FF13), spawn "amixer -q -c 1 set Master 10%+")]
+      `additionalKeys` [((0, 0x1008FF12), spawn "amixer -q -c 1 set Master toggle & amixer -q -c 1 set Speaker on")
+      , ((0, 0x1008FF11), spawn "amixer -q -c 1 set Master 10%-")
+      , ((0, 0x1008FF02), spawn "xbacklight -inc 15")
+      , ((0, 0x1008FF03), spawn "xbacklight -dec 15")
+      , ((0, 0x1008FF13), spawn "amixer -q -c 1 set Master 10%+")]
 --
 --myLayout = avoidStruts (
     --    Tall 1 (3/100) (1/2) |||

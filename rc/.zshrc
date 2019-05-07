@@ -1,3 +1,5 @@
+zmodload zsh/zprof
+
 bindkey -v
 bindkey -M vicmd '/' history-incremental-search-backward
 
@@ -6,7 +8,6 @@ PROMPT="%c $ "
 
 # Where it gets saved
 HISTFILE=~/.history
-
 # Remember about a years worth of history (AWESOME)
 SAVEHIST=10000
 HISTSIZE=10000
@@ -80,14 +81,30 @@ if [ -f ~/.localzsh ]; then
     . ~/.localzsh
 fi
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# not using this rn
+# PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-source /usr/local/bin/virtualenvwrapper.sh
+# export WORKON_HOME=$HOME/.virtualenvs
+# export PROJECT_HOME=$HOME/Devel
+# source /usr/local/bin/virtualenvwrapper.sh
 
-export NVM_DIR="/home/errata/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# AUR nvm
+if [ -s "/usr/share/nvm/init-nvm.sh" ]; then
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+  alias nvm='unalias nvm node npm && . /usr/share/nvm/init-nvm.sh && nvm'
+  alias node='unalias nvm node npm && . /usr/share/nvm/init-nvm.sh && node'
+  alias npm='unalias nvm node npm && . /usr/share/nvm/init-nvm.sh && npm'
+fi
+
+# kitty shit, should only run inside kitty?
+autoload -Uz compinit
+compinit
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin
+
+#export NVM_DIR="/home/errata/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 function cdt() {
   cd "$1" && tree -L 1;
@@ -104,4 +121,3 @@ function k() {
 echo '
 Welcome to walled city.
 '
-k

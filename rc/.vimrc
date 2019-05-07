@@ -14,74 +14,72 @@ set visualbell
 set t_vb=
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-"windows (ugh)
-"set rtp+=c:/Program\ Files\ (x86)/Vim/vimfiles/bundle/vundle
-call vundle#begin()
+
+call plug#begin('~/.vim/plugged')
 "magic vim plugin management
-Bundle 'gmarik/vundle'
+Plug 'gmarik/vundle'
 "uncomment on windows
 "so $VIMRUNTIME\..\locals.vim
 
 "color schemes
-Bundle 'tomasr/molokai'
-Bundle 'vim-scripts/umber-green'
-Bundle 'vim-scripts/very-monochrome-grey-theme'
-Bundle 'vim-scripts/C64.vim'
-Bundle 'ryanpcmcquen/true-monochrome_vim'
-Bundle 'fxn/vim-monochrome'
-Bundle 'vim-airline/vim-airline-themes'
+Plug 'tomasr/molokai'
+Plug 'vim-scripts/umber-green'
+Plug 'vim-scripts/very-monochrome-grey-theme'
+Plug 'vim-scripts/C64.vim'
+Plug 'ryanpcmcquen/true-monochrome_vim'
+Plug 'fxn/vim-monochrome'
+Plug 'vim-airline/vim-airline-themes'
 
-Bundle 'bling/vim-airline'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'kien/ctrlp.vim'
-Bundle 'mileszs/ack.vim'
-Bundle 'vim-scripts/nerdtree-ack'
-Bundle 'goldfeld/vim-seek'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'nathanaelkane/vim-indent-guides'
+Plug 'bling/vim-airline'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'kien/ctrlp.vim'
+Plug 'mileszs/ack.vim'
+Plug 'vim-scripts/nerdtree-ack'
+Plug 'goldfeld/vim-seek'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'nathanaelkane/vim-indent-guides'
 
-Bundle 'edkolev/tmuxline.vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-abolish'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-eunuch'
-Bundle 'tpope/vim-ragtag'
-Bundle 'Raimondi/delimitMate'
-Bundle 'easymotion/vim-easymotion'
+Plug 'edkolev/tmuxline.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-ragtag'
+Plug 'Raimondi/delimitMate'
+Plug 'easymotion/vim-easymotion'
 
 "javascript shit
 "tern is the thing that does type inference and other cray shit
-Bundle 'marijnh/tern_for_vim'
+Plug 'marijnh/tern_for_vim'
 " requires you to do an 'npm install' inside the tern dir
-"Bundle 'jelera/vim-javascript-syntax'
-Bundle 'pangloss/vim-javascript'
-"Bundle 'einars/js-beautify'
-"Bundle 'maksimr/vim-jsbeautify'
+"Plug 'jelera/vim-javascript-syntax'
+Plug 'pangloss/vim-javascript'
+"Plug 'einars/js-beautify'
+"Plug 'maksimr/vim-jsbeautify'
 "no longer sure what this means in the comment below this one, fuck
 "this requires a 'git submodule update --init --recursive' in it's dir
 
 "type script syntax highlighting
-Bundle 'HerringtonDarkholme/yats.vim'
+Plug 'HerringtonDarkholme/yats.vim'
 
 "elixir syntax highlighting
-Bundle 'elixir-lang/vim-elixir'
+Plug 'elixir-lang/vim-elixir'
 
 "typescript tools
-Bundle 'Quramy/tsuquyomi'
+Plug 'Quramy/tsuquyomi'
 
 
 "glorious LISP IDE
-Bundle 'kovisoft/slimv'
+Plug 'kovisoft/slimv'
 
 "glorious everything ide?
-Bundle "zweifisch/pipe2eval"
+Plug 'zweifisch/pipe2eval'
 
 "amazing autocompletion that has some weird errors/conflicts maybe?
-Bundle 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 "this requires additional shit to be installed so watch out
 "also you don't get semantic completion at the top level without pressing
 "ctrl+space
@@ -91,18 +89,18 @@ Bundle 'Valloric/YouCompleteMe'
 "making sure you build with tern is important
 
 "go syntax support 
-Bundle 'fatih/vim-go'
+Plug 'fatih/vim-go'
 
 "rust syntax support
-Bundle 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim'
 
 "zeal one button
-Bundle 'KabbAmine/zeavim.vim'
+Plug 'KabbAmine/zeavim.vim'
 
 "all plugin imports have to happen before this line
-call vundle#end()            " required
-filetype plugin indent on  "also required
-"end of bundle related stuff
+call plug#end()            " required
+"filetype plugin indent on  "also required
+"end of Plug related stuff
 
 "this makes the completion preview window close after completion (ycm)
 "see also :echo &completeopt

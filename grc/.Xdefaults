@@ -36,7 +36,7 @@ URxvt*saveLines: 12000
 !set orp-font as dir for bfd fonts
 !URxvt*font: xft:Fantasque Sans Mono:size=6
 !URxvt*font: -gbdfed-creep-regular-r-normal--16-120-96-96-m-4-iso10646-1
-URxvt*font: -misc-orp-medium-r-*--*-*-*-*-*-*-iso10646-1
+!URxvt*font: -misc-orp-medium-r-*--*-*-*-*-*-*-iso10646-1
 !URxvt*italicFont: -misc-orp-medium-i-*--*-*-*-*-*-*-iso10646-1
 !URxvt*boldFont: -misc-orp-bold-*-*--*-*-*-*-*-*-iso10646-1
 !URxvt*font: xft:terminus:pixelsize=15
