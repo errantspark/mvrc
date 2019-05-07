@@ -1,0 +1,100 @@
+pacman -S yay
+sudo pacman -S git
+useradd -m errata
+passwd errata
+login
+visudo
+groupadd
+gadd
+usermod
+usermod -G
+usermod -a wheel errata
+usermod -aG wheel errata
+exit
+pacman -S yay
+pacman -Syu
+
+dumped off the root shit on the server one time
+
+su
+sudo yay
+reboot
+exit
+sudo
+users
+users -V
+usermod
+groups
+fg
+visod
+visudo
+sudo visudo
+ll
+mkdir clones
+cd clones/
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+sudo pacman -Sy base-devel
+sudo pacman-mirrors --country United_States && sudo pacman -Syyu
+sudo pacman pacman-mirrors
+sudo pacman -S pacman-mirrors
+sudo pacman -S pacman-mirrorlist
+sudo pacman -S reflector
+reflector --country United_States --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+reflector --country United_States --age 12 --protocol https --sort rate
+reflector --country United_States --protocol https --sort rate
+reflector --country UnitedStates --protocol https --sort rate
+reflector --country USA --protocol https --sort rate
+reflector --country France
+reflector --country United_States
+reflector --country United_States_of_America
+reflector --country "United States of America"
+reflector --country "United States"
+reflector --country "United States" --protocol https --sort rate
+reflector --country "United States" --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+sudo reflector --country "United States" --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+yay
+make -si
+make clean
+makepkg -si
+yay
+pacman -Syyu
+sudo pacman -Syyu
+yay -S nvm
+ echo 'source /usr/share/nvm/init-nvm.sh' >> ~/.bashrc
+  echo 'source /usr/share/nvm/init-nvm.sh' >> ~/.zshrc
+source /usr/share/nvm/nvm.sh
+source /usr/share/nvm/init-nvm.sh
+nvm install node
+sudo nvm install node
+df
+nvm
+exit
+nvm
+cd clones/yay/
+cd ..
+cd ..
+nvm install node
+nvm use node
+sudo mv -r /root/www ~/
+sudo mv /root/www ~/
+ls
+chown www
+chown www errata errata
+chown errata errata www
+chown errata www
+sudo chown errata www
+cd www/
+ls
+npm -ig http-server
+npm -i -g http-server
+npm i -g http-server
+less  /home/errata/.npm/_logs/2019-05-03T06_50_53_395Z-debug.log
+yay -S nginx
+mv * /usr/share/nginx/html/
+sudo mv * /usr/share/nginx/html/
+systemctl start nginx
+sudo systemctl start nginx
+sudo systemctl enable nginx
+
