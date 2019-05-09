@@ -55,8 +55,10 @@ CLONES_DIR=$(pwd)
 #clone yay
 git clone https://aur.archlinux.org/yay.git
 cd yay
-makepkg -si
+makepkg -s
 "
+cd ~/clones/yay
+pacman -U *.pkg.tar.xz
 
 cd $MVRC_DIR
 
