@@ -24,13 +24,18 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
+if [[ $USERN ]]; then
+   echo "USERN must be set to the user name"
+   exit 1
+fi
+
 MVRC_DIR=$(pwd)
 
-# update pacman and databases
+# update databases and pacman
 pacman -Syy --noconfirm
 pacman -S pacman --noconfirm
 
-#install reflector from whatever mirror is configured
+# install reflector from whatever mirror is configured
 pacman -S reflector --noconfirm
 reflector --country "United States" --protocl https --sort rate --save /etc/pacman.d/mirrorlist
 
@@ -38,13 +43,12 @@ reflector --country "United States" --protocl https --sort rate --save /etc/pacm
 pacman -Syyu --noconfirm
 
 #install base-devel group (needed for yay)
-pacman -S base-devel
+pacman -S base-devel --noconfirm
 
-# the assumption here is that MVRC lives in the directory where all my personal
-# projects live and random shit i clone but never work on lives in clones
+su - $USERN
 
-mkdir ../clones
-cd ../clones
+mkdir clones
+cd clones
 
 CLONES_DIR=$(pwd)
 
@@ -69,7 +73,7 @@ nvm install node
 # ./link.sh
 
 #copy .gitinfo so userland setup script can populate it with email/password
-cp rc/.gitconfig $UD
+cp rc/.gitconfig ~
 
 ###### NOT USING THIS SHIT ANYMORE DELETE
 #clone vundle
