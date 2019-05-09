@@ -42,8 +42,8 @@ reflector --country "United States" --protocol https --sort rate --save /etc/pac
 #upgrade distro
 pacman -Syyu --noconfirm
 
-#install base-devel group (needed for yay)
-pacman -S base-devel --noconfirm
+#install base-devel group and golang (needed for yay)
+pacman -S base-devel go --noconfirm
 
 su - $USERN -c "
 
@@ -56,6 +56,7 @@ CLONES_DIR=$(pwd)
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
+"
 
 cd $MVRC_DIR
 
@@ -68,7 +69,7 @@ cd $MVRC_DIR
 # maybe this should just be trusted to be inside packages.list
 yay -S --needed --noconfirm nvm
 nvm install node
-"
+
 
 ######### GARBAGE LINKING
 # ./link.sh
