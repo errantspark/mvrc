@@ -32,7 +32,7 @@ pacman -S pacman --noconfirm
 
 #install reflector from whatever mirror is configured
 pacman -S reflector --noconfirm
-reflector --country "United States" --protocl https -sort rate --save /etc/pacman.d/mirrorlist
+reflector --country "United States" --protocl https --sort rate --save /etc/pacman.d/mirrorlist
 
 #upgrade distro
 pacman -Syyu --noconfirm
