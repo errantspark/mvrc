@@ -37,7 +37,7 @@ pacman -S pacman --noconfirm
 
 # install reflector from whatever mirror is configured
 pacman -S reflector --noconfirm
-reflector --country "United States" --protocl https --sort rate --save /etc/pacman.d/mirrorlist
+reflector --country "United States" --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
 #upgrade distro
 pacman -Syyu --noconfirm
@@ -45,7 +45,7 @@ pacman -Syyu --noconfirm
 #install base-devel group (needed for yay)
 pacman -S base-devel --noconfirm
 
-su - $USERN
+su - $USERN -c "
 
 mkdir clones
 cd clones
@@ -68,6 +68,7 @@ cd $MVRC_DIR
 # maybe this should just be trusted to be inside packages.list
 yay -S --needed --noconfirm nvm
 nvm install node
+"
 
 ######### GARBAGE LINKING
 # ./link.sh
