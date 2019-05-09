@@ -24,7 +24,7 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-if [[ $USERN ]]; then
+if [ -z "$USERN" ]; then
    echo "USERN must be set to the user name"
    exit 1
 fi
