@@ -58,7 +58,7 @@ cd yay
 makepkg -s
 "
 cd /home/$USERN/clones/yay
-pacman -U *.pkg.tar.xz
+pacman -U --noconfirm *.pkg.tar.xz
 
 cd $MVRC_DIR
 
