@@ -57,7 +57,7 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -s
 "
-cd ~/clones/yay
+cd /home/$USERN/clones/yay
 pacman -U *.pkg.tar.xz
 
 cd $MVRC_DIR
