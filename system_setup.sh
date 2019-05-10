@@ -47,8 +47,11 @@ pacman -S base-devel go --noconfirm
 
 export PASSWD=$PASSWORD
 export MVRC_DIR
+
+#hopefully this is the sick sudo automatically for without auth solution
+
 su - $USERN -c "
-echo $PASSWD | sudo -vS
+echo \"$PASSWD\" | sudo -vS
 mkdir clones
 cd clones
 
