@@ -65,12 +65,14 @@ cd $MVRC_DIR
 ############# YAY ############
 # install packages inside package.list with yay, lives in a separate file so
 # it can be manually run
+su - $USERN -c "
 ./yay_install.sh
 
 #install node
 # maybe this should just be trusted to be inside packages.list
 yay -S --needed --noconfirm nvm
 nvm install node
+"
 
 
 ######### GARBAGE LINKING
