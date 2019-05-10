@@ -45,8 +45,10 @@ pacman -Syyu --noconfirm
 #install base-devel group and golang (needed for yay)
 pacman -S base-devel go --noconfirm
 
+export PASSWD=$PASSWORD
+export MVRC_DIR
 su - $USERN -c "
-
+echo $PASSWD | sudo -vS
 mkdir clones
 cd clones
 
@@ -55,17 +57,15 @@ CLONES_DIR=$(pwd)
 #clone yay
 git clone https://aur.archlinux.org/yay.git
 cd yay
-makepkg -s
-"
-cd /home/$USERN/clones/yay
-pacman -U --noconfirm *.pkg.tar.xz
+makepkg -si
+#cd /home/$USERN/clones/yay
+#pacman -U --noconfirm *.pkg.tar.xz
 
 cd $MVRC_DIR
 
 ############# YAY ############
 # install packages inside package.list with yay, lives in a separate file so
 # it can be manually run
-su - $USERN -c "
 ./yay_install.sh
 
 #install node
