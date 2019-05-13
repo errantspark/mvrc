@@ -98,10 +98,12 @@ if [ -s "/usr/share/nvm/init-nvm.sh" ]; then
 fi
 
 # kitty shit, should only run inside kitty?
-autoload -Uz compinit
-compinit
-# Completion for kitty
-kitty + complete setup zsh | source /dev/stdin
+if [ $TERM = "xterm-kitty" ]; then
+  autoload -Uz compinit
+  compinit
+  # Completion for kitty
+  kitty + complete setup zsh | source /dev/stdin
+fi
 
 #export NVM_DIR="/home/errata/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
