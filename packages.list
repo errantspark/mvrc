@@ -1,4 +1,12 @@
+base-devel
+go
 zsh
 zsh-completions
+dnsutils
 #testing this comment thing?
 rxvt-unicode-terminfo
+cmake
+python3-dev
+rustup
+clang
+gvim

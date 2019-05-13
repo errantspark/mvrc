@@ -66,10 +66,15 @@ pacman -U --noconfirm *.pkg.tar.xz
 
 cd $MVRC_DIR
 
-######### GARBAGE LINKING
+######### LINKING
+# delete and re-link all rcfiles kept in this dir
+# also install vim-plug
 su - $USERN -c "
 cd $MVRC_DIR
 ./link.sh
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim +PlugInstall +qall
 "
 
 #copy .gitinfo so userland setup script can populate it with email/password
@@ -80,4 +85,3 @@ cp rc/.gitconfig /home/$USERN/
 # git clone https://github.com/gmarik/vundle.git $UD/.vim/bundle/vundle
 
 #install vundle plugins
-# vim +PluginInstall +qall
