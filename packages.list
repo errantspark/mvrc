@@ -6,7 +6,7 @@ dnsutils
 #testing this comment thing?
 rxvt-unicode-terminfo
 cmake
-python3-dev
+python3
 rustup
 clang
 gvim
