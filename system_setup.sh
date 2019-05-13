@@ -43,7 +43,9 @@ reflector --country "United States" --protocol https --sort rate --save /etc/pac
 pacman -Syyu --noconfirm
 
 #install base-devel group and golang (needed for yay)
-pacman -S base-devel go --noconfirm
+#pacman -S base-devel go --noconfirm
+./pac_install.sh
+chsh -s /bin/zsh $USERN
 
 export PASSWD=$PASSWORD
 su - $USERN -c "
@@ -64,24 +66,8 @@ pacman -U --noconfirm *.pkg.tar.xz
 
 cd $MVRC_DIR
 
-############# YAY ############
-# instkall packages inside package.list with yay, lives in a separate file so
-# it can be manually run
-su - $USERN -c "
-./yay_install.sh
-
-#install node
-# maybe this should just be trusted to be inside packages.list
-yay -S --needed --noconfirm nvm
-nvm install node
-"
-
-
 ######### GARBAGE LINKING
-
 su - $USERN -c "
-echo $MVRC_DIR
-echo attemptingtolink
 cd $MVRC_DIR
 ./link.sh
 "

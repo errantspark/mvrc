@@ -21,3 +21,13 @@ git config --global push.default matching
 
 #change mvrc to ssh based
 git remote set-url origin git@github.com:errantspark/mvrc.git
+
+############# YAY ############
+# instkall packages inside package.list with yay, lives in a separate file so
+# it can be manually run
+./yay_install.sh
+
+#install node
+# maybe this should just be trusted to be inside packages.list
+yay -S --needed --noconfirm nvm
+nvm install node
