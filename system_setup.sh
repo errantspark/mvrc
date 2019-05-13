@@ -74,7 +74,7 @@ cd $MVRC_DIR
 ./link.sh
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-vim +PlugInstall +qall
+vim +PlugInstall! +qall
 "
 
 #copy .gitinfo so userland setup script can populate it with email/password

@@ -17,7 +17,6 @@ filetype off
 
 call plug#begin('~/.vim/plugged')
 "magic vim plugin management
-Plug 'gmarik/vundle'
 "uncomment on windows
 "so $VIMRUNTIME\..\locals.vim
 
@@ -78,8 +77,9 @@ Plug 'kovisoft/slimv'
 "glorious everything ide?
 Plug 'zweifisch/pipe2eval'
 
+"5/13/19 i'm going to try deoplete again
 "amazing autocompletion that has some weird errors/conflicts maybe?
-Plug 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
 "this requires additional shit to be installed so watch out
 "also you don't get semantic completion at the top level without pressing
 "ctrl+space
@@ -87,6 +87,15 @@ Plug 'Valloric/YouCompleteMe'
 "cd ~/.vim/bundle/YouCompleteMe
 "./install.py --tern-completer
 "making sure you build with tern is important
+
+"Plug 'roxma/vim-hug-neovim-rpc'
+"Plug 'roxma/nvim-yarp'
+"Plug 'Shougo/deoplete.nvim'
+"
+"
+"
+" Or install latest release tag
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 
 "go syntax support 
 Plug 'fatih/vim-go'
@@ -110,21 +119,21 @@ call plug#end()            " required
 imap <C-o> <CR><Esc>O
 
 "set up ycm triggers (autocomplete after typing . in js for ex)
-let g:ycm_semantic_triggers =  {
-            \   'c' : ['->', '.'],
-            \   'objc' : ['->', '.'],
-            \   'ocaml' : ['.', '#'],
-            \   'cpp,objcpp' : ['->', '.', '::'],
-            \   'perl' : ['->'],
-            \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-            \   'html': ['<', '"', '</', ' '],
-            \   'vim' : ['re![_a-za-z]+[_\w]*\.'],
-            \   'ruby' : ['.', '::'],
-            \   'lua' : ['.', ':'],
-            \   'erlang' : [':'],
-            \   'haskell' : ['.', 're!.']
-            \ }
-
+"let g:ycm_semantic_triggers =  {
+"            \   'c' : ['->', '.'],
+"            \   'objc' : ['->', '.'],
+"            \   'ocaml' : ['.', '#'],
+"            \   'cpp,objcpp' : ['->', '.', '::'],
+"            \   'perl' : ['->'],
+"            \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+"            \   'html': ['<', '"', '</', ' '],
+"            \   'vim' : ['re![_a-za-z]+[_\w]*\.'],
+"            \   'ruby' : ['.', '::'],
+"            \   'lua' : ['.', ':'],
+"            \   'erlang' : [':'],
+"            \   'haskell' : ['.', 're!.']
+"            \ }
+"
 
 "recommended settings for syntastic
 set statusline+=%#warningmsg#
@@ -319,6 +328,10 @@ map <Leader> <Plug>(easymotion-prefix)
 "function! Multiple_cursors_after()
 "  let g:ycm_auto_trigger = 1
 "endfunction
+"
+
+" deoplete
+"let g:deoplete#enable_at_startup = 1
 
 function SetJSOptions()
   Docset threejs,javascript
@@ -381,3 +394,22 @@ endfun
 function! SynFg()                                                            
   echo synIDattr(synIDtrans(synID(line("."), col("."), 1)), "fg")
 endfun
+
+
+let g:coc_global_extensions = [
+	\ 'coc-css',
+	\ 'coc-highlight',
+	\ 'coc-html',
+	\ 'coc-json',
+	\ 'coc-snippets',
+	\ 'coc-stylelint',
+	\ 'coc-tag',
+	\ 'coc-tsserver'
+\ ]
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
