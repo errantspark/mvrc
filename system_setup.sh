@@ -45,11 +45,12 @@ pacman -Syyu --noconfirm
 #install base-devel group and golang (needed for yay)
 #pacman -S base-devel go --noconfirm
 ./pac_install.sh
+
 chsh -s /bin/zsh $USERN
 
 export PASSWD=$PASSWORD
+#echo $PASSWD | sudo -vS
 su - $USERN -c "
-echo $PASSWD | sudo -vS
 mkdir clones
 cd clones
 
@@ -60,6 +61,7 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -s
 "
+
 #makepkg doesn't fucking use the sudo, pacman does
 cd /home/$USERN/clones/yay
 pacman -U --noconfirm *.pkg.tar.xz
