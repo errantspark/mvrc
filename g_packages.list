@@ -1,3 +1,5 @@
+#this isn't going to work on account of vim being in conflict
+gvim
 gmrun 
 dmenu 
 xmobar 

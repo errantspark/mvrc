@@ -9,4 +9,3 @@ cmake
 python3
 rustup
 clang
-gvim
