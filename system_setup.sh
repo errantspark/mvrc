@@ -29,7 +29,7 @@ if [ -z "$USERN" ]; then
    exit 1
 fi
 
-MVRC_DIR=$(pwd)
+export MVRC_DIR=$(pwd)
 
 # update databases and pacman
 pacman -Syy --noconfirm
@@ -46,12 +46,8 @@ pacman -Syyu --noconfirm
 pacman -S base-devel go --noconfirm
 
 export PASSWD=$PASSWORD
-export MVRC_DIR
-
-#hopefully this is the sick sudo automatically for without auth solution
-
 su - $USERN -c "
-echo \"$PASSWD\" | sudo -vS
+echo $PASSWD | sudo -vS
 mkdir clones
 cd clones
 
@@ -60,15 +56,18 @@ CLONES_DIR=$(pwd)
 #clone yay
 git clone https://aur.archlinux.org/yay.git
 cd yay
-makepkg -si
-#cd /home/$USERN/clones/yay
-#pacman -U --noconfirm *.pkg.tar.xz
+makepkg -s
+"
+#makepkg doesn't fucking use the sudo, pacman does
+cd /home/$USERN/clones/yay
+pacman -U --noconfirm *.pkg.tar.xz
 
 cd $MVRC_DIR
 
 ############# YAY ############
-# install packages inside package.list with yay, lives in a separate file so
+# instkall packages inside package.list with yay, lives in a separate file so
 # it can be manually run
+su - $USERN -c "
 ./yay_install.sh
 
 #install node
@@ -79,10 +78,16 @@ nvm install node
 
 
 ######### GARBAGE LINKING
-# ./link.sh
+
+su - $USERN -c "
+echo $MVRC_DIR
+echo attemptingtolink
+cd $MVRC_DIR
+./link.sh
+"
 
 #copy .gitinfo so userland setup script can populate it with email/password
-cp rc/.gitconfig ~
+cp rc/.gitconfig /home/$USERN/
 
 ###### NOT USING THIS SHIT ANYMORE DELETE
 #clone vundle

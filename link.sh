@@ -28,4 +28,3 @@ ln -s $cwd/vim/noctu.vim $UD/.vim/colors/
 ln -s $cwd/vim/orchid.vim $UD/.vim/colors/
 #link up editorconfig for jsbeautify etc
 ln -s $cwd/vim/.editorconfig $UD/.vim/
-
