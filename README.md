@@ -3,9 +3,10 @@ mvrc
 
 linux dotfiles
 
-
-desktop bullshit
+serverland
 ----
-on desktop there's a bunch more brittle garnage that needs to be documented
+vim using coc.nvim for completion, this requires node to be set up in some sort of weird way and it's probably going to give me grief
 
-the custom xmonad based session is started using *LightDM* using a file in `/usr/share/xsessions/<namehere>.desktop
+
+guiland
+----

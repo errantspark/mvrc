@@ -31,8 +31,8 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
-Plug 'kien/ctrlp.vim'
+"Plug 'scrooloose/syntastic'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
 Plug 'vim-scripts/nerdtree-ack'
 Plug 'goldfeld/vim-seek'
@@ -52,10 +52,16 @@ Plug 'easymotion/vim-easymotion'
 
 "javascript shit
 "tern is the thing that does type inference and other cray shit
-Plug 'marijnh/tern_for_vim'
+"Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
+
 " requires you to do an 'npm install' inside the tern dir
 "Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
+"async lint engine
+Plug 'dense-analysis/ale'
+"Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+
+
 "Plug 'einars/js-beautify'
 "Plug 'maksimr/vim-jsbeautify'
 "no longer sure what this means in the comment below this one, fuck
@@ -80,6 +86,7 @@ Plug 'zweifisch/pipe2eval'
 "5/13/19 i'm going to try deoplete again
 "amazing autocompletion that has some weird errors/conflicts maybe?
 "Plug 'Valloric/YouCompleteMe'
+
 "this requires additional shit to be installed so watch out
 "also you don't get semantic completion at the top level without pressing
 "ctrl+space
@@ -92,10 +99,12 @@ Plug 'zweifisch/pipe2eval'
 "Plug 'roxma/nvim-yarp'
 "Plug 'Shougo/deoplete.nvim'
 "
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "
-"
-" Or install latest release tag
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+"5/26/19 i should think long and hard about what it means to use vim with
+"all of these fucking plugins because maybe i don't really need
+"autocompletion and all these fucking fancy IDE features because i should
+"focus on writing good code, but doesn't that stuff help? or is it a crutch?
 
 "go syntax support 
 Plug 'fatih/vim-go'
@@ -111,40 +120,8 @@ call plug#end()            " required
 "filetype plugin indent on  "also required
 "end of Plug related stuff
 
-"this makes the completion preview window close after completion (ycm)
-"see also :echo &completeopt
-"autocmd CompleteDone * pclose
-
 "this maps Ctrl+O to open up a newline inside parens
 imap <C-o> <CR><Esc>O
-
-"set up ycm triggers (autocomplete after typing . in js for ex)
-"let g:ycm_semantic_triggers =  {
-"            \   'c' : ['->', '.'],
-"            \   'objc' : ['->', '.'],
-"            \   'ocaml' : ['.', '#'],
-"            \   'cpp,objcpp' : ['->', '.', '::'],
-"            \   'perl' : ['->'],
-"            \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-"            \   'html': ['<', '"', '</', ' '],
-"            \   'vim' : ['re![_a-za-z]+[_\w]*\.'],
-"            \   'ruby' : ['.', '::'],
-"            \   'lua' : ['.', ':'],
-"            \   'erlang' : [':'],
-"            \   'haskell' : ['.', 're!.']
-"            \ }
-"
-
-"recommended settings for syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-"maybe turn this off? it might get annoying
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 
 "fix capital W and capital Q annoyance
 :command WQ wq
@@ -154,9 +131,6 @@ let g:syntastic_check_on_wq = 0
 
 "remaps ; to : so the above things don't even happen at all
 nnoremap ; :
-
-"enables mousing
-set mouse=a
 
 "This sets t_Co to 256 to fix colors because seriously who doesn't have 256? 
 set t_Co=256
@@ -225,10 +199,6 @@ map <C-L> <C-W>l
 "makes it so that ctrl+enter goes to the correct place
 map <C-Return> <CR><CR><C-o>k<Tab>
 
-"let g:solarized_termcolors=256
-"exit insert mode with jk or kj
-ino jk <ESC>
-ino kj <ESC>
 "Relative Line Numbering (jeffkreeftmeijer.com)
 :au FocusLost * :set number
 :au FocusGained * :set relativenumber
@@ -311,43 +281,36 @@ func! MScroll()
       endif
     endif
   endwhile
-  :call cursor(v:mouse_lnum,v:mouse_col)
+  call cursor(v:mouse_lnum,v:mouse_col)
 endfunc
-:set mouse=a
-:noremap <silent> <RightMouse> :call MScroll()<CR>
-:noremap <RightRelease> <Nop>
-:noremap <RightDrag> <Nop> 
+
+"enables mousing
+set mouse=a
+noremap <silent> <RightMouse> :call MScroll()<CR>
+noremap <RightRelease> <Nop>
+noremap <RightDrag> <Nop> 
 map <Leader> <Plug>(easymotion-prefix)
 
-"disable ycm when using multiple cursors 
-"function! Multiple_cursors_before()
-"  let g:ycm_auto_trigger = 0
-"endfunction
-
-" Called once only when the multiple selection is canceled (default <Esc>)
-"function! Multiple_cursors_after()
-"  let g:ycm_auto_trigger = 1
-"endfunction
-"
-
-" deoplete
-"let g:deoplete#enable_at_startup = 1
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\}
 
 function SetJSOptions()
   Docset threejs,javascript
   set fdm=syntax
   set foldlevelstart=99
   let g:maplocalleader = ','
-  nnoremap <localleader>d :TernDef<CR>
-  nnoremap <localleader>Dp :TernDefPreview<CR>
-  nnoremap <localleader>Dt :TernDefTab<CR>
-  nnoremap <localleader>Ds :TernDefSplit<CR>
-  nnoremap <localleader>sd :TernDefSplit<CR>
-  nnoremap <localleader>h :TernDocBrowse<CR>
-  nnoremap <localleader>H :TernDoc<CR>
-  nnoremap <localleader>r :TernRefs<CR>
-  nnoremap <localleader>R :TernRename<CR>
-  nnoremap <localleader>t :TernType<CR>
+  "nnoremap <localleader>d :TernDef<CR>
+  "nnoremap <localleader>Dp :TernDefPreview<CR>
+  "nnoremap <localleader>Dt :TernDefTab<CR>
+  "nnoremap <localleader>Ds :TernDefSplit<CR>
+  "nnoremap <localleader>sd :TernDefSplit<CR>
+  "nnoremap <localleader>h :TernDocBrowse<CR>
+  "nnoremap <localleader>H :TernDoc<CR>
+  "nnoremap <localleader>r :TernRefs<CR>
+  "nnoremap <localleader>R :TernRename<CR>
+  "nnoremap <localleader>t :TernType<CR>
   nnoremap <localleader>z :Zeavim<CR>
   map <localleader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
   "conceal js stuff maybe is fun and good
@@ -395,21 +358,123 @@ function! SynFg()
   echo synIDattr(synIDtrans(synID(line("."), col("."), 1)), "fg")
 endfun
 
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-ultisnips' ]
 
-let g:coc_global_extensions = [
-	\ 'coc-css',
-	\ 'coc-highlight',
-	\ 'coc-html',
-	\ 'coc-json',
-	\ 'coc-snippets',
-	\ 'coc-stylelint',
-	\ 'coc-tag',
-	\ 'coc-tsserver'
-\ ]
+"COC copy paste sadness
 
+" Better display for messages
+set cmdheight=2
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[c` and `]c` to navigate diagnostics
+"nmap <silent> [c <Plug>(coc-diagnostic-prev)
+"nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add status line support, for integration with other plugin, checkout `:h coc-status`
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" end coc copy paste

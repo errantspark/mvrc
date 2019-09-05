@@ -92,9 +92,11 @@ fi
 if [ -s "/usr/share/nvm/init-nvm.sh" ]; then
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
-  alias nvm='unalias nvm node npm && . /usr/share/nvm/init-nvm.sh && nvm'
-  alias node='unalias nvm node npm && . /usr/share/nvm/init-nvm.sh && node'
-  alias npm='unalias nvm node npm && . /usr/share/nvm/init-nvm.sh && npm'
+  alias ni='unalias nvm node npm ni vim && . /usr/share/nvm/init-nvm.sh'
+  alias nvm='unalias nvm node npm ni vim && . /usr/share/nvm/init-nvm.sh && nvm'
+  alias node='unalias nvm node npm ni vim && . /usr/share/nvm/init-nvm.sh && node'
+  alias npm='unalias nvm node npm ni vim && . /usr/share/nvm/init-nvm.sh && npm'
+  alias vim='unalias nvm node npm ni vim && . /usr/share/nvm/init-nvm.sh && vim'
 fi
 
 # kitty shit, should only run inside kitty?
