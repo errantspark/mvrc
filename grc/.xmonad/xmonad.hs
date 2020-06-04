@@ -8,6 +8,7 @@ import XMonad.Layout.LimitWindows
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Spiral
+import XMonad.Layout.Accordion
 import XMonad.Layout.LayoutCombinators
 import XMonad.Util.EZConfig
 import XMonad.Hooks.DynamicLog
@@ -26,6 +27,7 @@ myLayouts = minimize (limitWindows 6 $
   spiral (6/7) |||
   ThreeCol 1 (3/100) (1/2) |||
   Tall 1 (3/100) (21/34) |||
+  Accordion |||
   noBorders (fullscreenFull Full))
 
 myConfig = Emwh.ewmh defaultConfig { modMask = mod4Mask,
@@ -43,6 +45,7 @@ myConfig = Emwh.ewmh defaultConfig { modMask = mod4Mask,
       ("M-<Space>", sendMessage $ JumpToLayout "ThreeCol"),
       ("M-g", do {setLimit 6; sendMessage $ JumpToLayout "Spiral"}),
       ("M-d",do {setLimit 100; sendMessage $ JumpToLayout "Tall"}),
+      ("M-v", sendMessage $ JumpToLayout "Accordion"),
       ("M-m", withFocused $ minimizeWindow),
       ("M-S-m", withLastMinimized $ maximizeWindowAndFocus),
       ("M-=", increaseLimit),

@@ -1,11 +1,14 @@
+import * as std from 'std'
+'use strip';
+
 let rng = function(seed) {
   return function() {
     seed = (seed * 9301 + 49297) % 233280 
     return seed
   }
 }
-let pwd = process.env.PWD
-let pnum = parseInt(Array.prototype.slice.call(pwd).map(x => x.charCodeAt(0)%3).join(''),3)
+let pwd = std.getenv('PWD')//process.env.PWD
+let pnum = parseInt([...pwd].map(x => x.charCodeAt(0)%3).join(''),3)
 let seed = rng(pnum)
 let skyline = new Array(20).fill(0)
 let lines = new Array(9).fill(0)

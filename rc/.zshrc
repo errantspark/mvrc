@@ -57,9 +57,9 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -alF'
+alias ll='ls -alFh'
 alias la='ls -A'
-alias l='ls -CF'
+alias l='ls -lh'
 
 #add alias for backlight
 alias bls='xbacklight -set'
@@ -115,15 +115,19 @@ function cdt() {
 }
 
 function cdk() {
-  cd "$1" && node ~/.misc/haknam.js;
+  cd "$1" && ~/.misc/haknam
 }
 
 function k() {
-  node ~/.misc/haknam.js;
+  ~/.misc/haknam
 }
 
 echo '
 Welcome to walled city.
 '
+~/.misc/haknam
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/.cargo/bin:$$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+#this adds Z so i can jump around, jump around, jump up jump up and get down
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh

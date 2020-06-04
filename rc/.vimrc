@@ -37,7 +37,7 @@ Plug 'mileszs/ack.vim'
 Plug 'vim-scripts/nerdtree-ack'
 Plug 'goldfeld/vim-seek'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'nathanaelkane/vim-indent-guides'
+"Plug 'nathanaelkane/vim-indent-guides'
 
 Plug 'edkolev/tmuxline.vim'
 Plug 'tpope/vim-fugitive'
@@ -58,7 +58,8 @@ Plug 'easymotion/vim-easymotion'
 "Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
 "async lint engine
-Plug 'dense-analysis/ale'
+"DO I ACTULLY WANT THIS????? or is COC enough
+"Plug 'dense-analysis/ale'
 "Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 
 
@@ -100,6 +101,11 @@ Plug 'zweifisch/pipe2eval'
 "Plug 'Shougo/deoplete.nvim'
 "
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+"Plug 'SirVer/ultisnips'
+
+" shows completions in command line
+Plug 'Shougo/echodoc.vim'
 "
 "5/26/19 i should think long and hard about what it means to use vim with
 "all of these fucking plugins because maybe i don't really need
@@ -111,6 +117,9 @@ Plug 'fatih/vim-go'
 
 "rust syntax support
 Plug 'rust-lang/rust.vim'
+
+"nim syntax support
+Plug 'zah/nim.vim'
 
 "zeal one button
 Plug 'KabbAmine/zeavim.vim'
@@ -179,6 +188,18 @@ set colorcolumn=80
 set scrolloff=8         "Start scrolling when we're 8 lines away from margins"
 "UPDATE: i was a retard| that was ugly so now we use this instead
 "match Error /\%81v.\+/
+
+set smartindent cindent
+
+"smart indent when entering insert mode with i on empty lines
+function! IndentWithI()
+    if len(getline('.')) == 0
+        return "\"_cc"
+    else
+        return "i"
+    endif
+endfunction
+nnoremap <expr> i IndentWithI()
 
 set noru
 "indentguides
@@ -296,11 +317,33 @@ let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \}
 
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 1
+
+"default to no sign column, this breaks diffs i think
+set scl=no
+" Toggle ALE quick list
+nmap <silent> gl :call QFixToggle()<CR>
+
+function! QFixToggle()
+  if exists("g:qfix_win")
+    cclose
+    unlet g:qfix_win
+    set scl=no
+  else
+    set scl=auto
+    copen 10
+    let g:qfix_win = bufnr("$")
+  endif
+endfunction
+
+let g:maplocalleader = ','
 function SetJSOptions()
   Docset threejs,javascript
   set fdm=syntax
   set foldlevelstart=99
-  let g:maplocalleader = ','
   "nnoremap <localleader>d :TernDef<CR>
   "nnoremap <localleader>Dp :TernDefPreview<CR>
   "nnoremap <localleader>Dt :TernDefTab<CR>
@@ -358,9 +401,14 @@ function! SynFg()
   echo synIDattr(synIDtrans(synID(line("."), col("."), 1)), "fg")
 endfun
 
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-ultisnips' ]
+function SetRSOptions()
+  let g:coc_global_extensions = [ 'coc-rust-analyzer'] ",'coc-rls', 'coc-ultisnips' ]
+endfunction
+
+au FileType rust call SetRSOptions() 
 
 "COC copy paste sadness
+"
 
 " Better display for messages
 set cmdheight=2
@@ -404,8 +452,11 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Use K to show documentation in preview window
+" Use sd to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+"tryan get echodoc working
+let g:echodoc_enable_at_startup = 1
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)

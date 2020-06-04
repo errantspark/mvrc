@@ -8,12 +8,14 @@
 -- 
 -- Author: David Brewer
 -- Repository: https://github.com/davidbrewer/xmonad-ubuntu-conf
+--    Run Date "%a %b %_d %H:%M" "date" 10,
+
 
 
 Config {
   -- Set font and default foreground/background colors. Note that
   -- the height of xmobar is controlled by the font you use.
-  font = "xft:ProggyCleanTTSZ:style=regular:pixelsize=16",
+  -- font = "xft:ProggyCleanTTSZ:style=regular:pixelsize=16",
   bgColor = "black",
   fgColor = "grey",
 
@@ -28,37 +30,90 @@ Config {
   -- list of commands which gather information about your system for
   -- presentation in the bar.
   commands = [
-    Run Weather "KNUQ" ["-t","Wind <wind> Visibility:<visibility> <pressure>mb <skyCondition> <tempC>C","-L","18","-H","25","--normal","green","--high","red","--low","lightblue"] 36000,
+    -- Run WeatherX "KSFO" ["-t", "<station>: <tempC>C"] 36000,
+    -- Run Weather "KNUQ" ["-t","Wind <wind> Visibility:<visibility> <pressure>mb <skyCondition> <tempC>C","-L","18","-H","25","--normal","green","--high","red","--low","lightblue"] 36000,
     -- Gather and format CPU usage information.
     -- If it's above 50%, we consider it high usage and make it red.
-    Run Cpu [
-      "-H","50",
-      "--high","red"
-    ] 10,
+    --
+    --
+    --
 
-    -- Gather and format memory usage information
-    Run Memory [
-      "-t","Mem: <usedratio>%"
-    ] 10,
+ -- network activity monitor (dynamic interface resolution)
+         Run DynNetwork     [ "--template" , "<dev> u: <tx> d: <rx>"
+                             , "--s"      , "True"       -- units: B/s
+                             , "--Low"      , "1000"       -- units: B/s
+                             , "--High"     , "5000"       -- units: B/s
+                             , "--low"      , "green"
+                             , "--normal"   , "orange"
+                             , "--high"     , "red"
+                             ] 10
+
+        -- cpu activity monitor
+        , Run MultiCpu       [ "--template" , "Cpu: <total0>%|<total1>%<total2>%|<total3>%"
+                             , "--Low"      , "50"         -- units: %
+                             , "--High"     , "85"         -- units: %
+                             , "--low"      , "green"
+                             , "--normal"   , "orange"
+                             , "--high"     , "red"
+                             ] 10
+
+        -- cpu core temperature monitor
+        , Run CoreTemp       [ "--template" , "Temp: <core0>°C|<core1>°C"
+                             , "--Low"      , "70"        -- units: °C
+                             , "--High"     , "80"        -- units: °C
+                             , "--low"      , "green"
+                             , "--normal"   , "orange"
+                             , "--high"     , "red"
+                             ] 50
+                          
+        -- memory usage monitor
+        , Run Memory         [ "--template" ,"Mem: <usedratio>%"
+                             , "--Low"      , "20"        -- units: %
+                             , "--High"     , "90"        -- units: %
+                             , "--low"      , "green"
+                             , "--normal"   , "orange"
+                             , "--high"     , "red"
+                             ] 10
+
+        -- battery monitor
+        , Run Battery        [ "--template" , "Batt: <acstatus>"
+                             , "--Low"      , "10"        -- units: %
+                             , "--High"     , "80"        -- units: %
+                             , "--low"      , "red"
+                             , "--normal"   , "orange"
+                             , "--high"     , "green"
+
+                             , "--" -- battery specific options
+                                       -- discharging status
+                                       , "-o"	, "<left>%" --(<timeleft>)"
+                                       -- AC "on" status
+                                       , "-O"	, "<fc=#dAA520>Charging</fc>"
+                                       -- charged status
+                                       , "-i"	, "<fc=#00cc00>Charged</fc>"
+                             ] 50
 
     
     -- Date formatting
-    Run Date "%a %b %_d %H:%M" "date" 10,
+    ,Run Date "%a %b %_d %H:%M.%S" "date" 10,
 
     
     -- To get volume information, we run a custom bash script.
     -- This is because the built-in volume support in xmobar is disabled
     -- in Debian and derivatives like Ubuntu.
     -- Run Com "~/.xmonad/get-volume" [] "myvolume" 10
-  Run BatteryP ["BAT0"]
-              ["-t", "<acstatus><watts> (<left>%)",
-               "-L", "10", "-H", "80", "-p", "3",
-               "--", "-O", "<fc=green>On</fc> - ", "-i", "",
-               "-L", "-15", "-H", "-5",
-               "-l", "red", "-m", "blue", "-h", "green"]
-              60   ,
+  -- Run BatteryP ["BAT0"]
+  --           ["-t", "<acstatus><watts> (<left>%)",
+  --            "-L", "10", "-H", "80", "-p", "3",
+  --            "--", "-O", "<fc=green>On</fc> - ", "-i", "",
+  --            "-L", "-15", "-H", "-5",
+  --            "-l", "red", "-m", "blue", "-h", "green"]
+  --           60   ,
     -- This line tells xmobar to read input from stdin. That's how we
     -- get the information that xmonad is sending it for display.
+    Run Com "/home/errata/.xmobar/pubip.sh" [] "publicip" 600,
+    Run Com "/home/errata/.xmobar/bridgeip.sh" [] "bridgeip" 600,
+    Run Com "/home/errata/.xmobar/pingone.sh" [] "ping" 600,
+    Run Com "/home/errata/.xmobar/nameserver.sh" [] "nameserver" 600,
     Run StdinReader
    ],
 
@@ -71,6 +126,7 @@ Config {
 
    -- Overall template for the layout of the xmobar contents. Note that
    -- space is significant and can be used to add padding.
-   template = " %KNUQ% } %StdinReader% { %battery% | %cpu% | %memory% | <fc=#e6744c>%date%</fc> "
+   template = " <fc=#e6744c>%publicip%</fc> <fc=#e6aa4c>%bridgeip%</fc> <fc=#e674cc>%nameserver%</fc> | <fc=#cccccc>%ping%</fc>  } %StdinReader% { %dynnetwork% | %battery% | %multicpu% | %memory% | <fc=#e6744c>%date%</fc> "
+   --template = " } %StdinReader% { %cpu% | %memory% | <fc=#e6744c>%date%</fc> "
    -- template = "%StdinReader% }{ %KNUQ% | %battery% | %cpu% | %memory% | Vol: %myvolume% <fc=#e6744c>%date%</fc> "
 }
