@@ -64,7 +64,7 @@ makepkg -s
 
 #makepkg doesn't fucking use the sudo, pacman does
 cd /home/$USERN/clones/yay
-pacman -U --noconfirm *.pkg.tar.xz
+pacman -U --noconfirm *.pkg.tar.zst
 
 cd $MVRC_DIR
 
