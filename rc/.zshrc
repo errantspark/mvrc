@@ -122,9 +122,6 @@ function k() {
   ~/.misc/haknam
 }
 
-echo '
-Welcome to walled city.
-'
 ~/.misc/haknam
 
 export PATH="$HOME/.cargo/bin:$$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
