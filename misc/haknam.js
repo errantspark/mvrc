@@ -33,5 +33,5 @@ let city = new Array(20).fill(0).map(a => tower(10))
 
 let pivot = city[0].map((a,i) => city.map((_,j)=> city[j][i])) 
 
-print(`\nWelcome citizen \x1b[31m${user}\x1b[0m to walled city annex \x1b[31m${hostname}\x1b[0m.\n`)
+print(`\x1b[2J\x1b[H\nWelcome citizen \x1b[31m${user}\x1b[0m to walled city annex \x1b[31m${hostname}\x1b[0m.\n`)
 print(pivot.map(a => a.join('')).join('\n')+'\n')
