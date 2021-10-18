@@ -28,6 +28,7 @@ Plug 'vim-scripts/C64.vim'
 Plug 'ryanpcmcquen/true-monochrome_vim'
 Plug 'fxn/vim-monochrome'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
 
 Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdtree'
@@ -128,6 +129,7 @@ Plug 'KabbAmine/zeavim.vim'
 call plug#end()            " required
 "filetype plugin indent on  "also required
 "end of Plug related stuff
+"let g:coc.preferences.extensionUpdateCheck = 'never'
 
 "this maps Ctrl+O to open up a newline inside parens
 imap <C-o> <CR><Esc>O

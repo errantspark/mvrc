@@ -6,6 +6,12 @@ alias srd="screen -rd"
 alias ss="screen -S"
 alias sls="screen -list"
 
+alias memo="pushd ~/lambda/memo/ > /dev/null && node main.mjs && popd > /dev/null"
+alias vimemo="pushd ~/lambda/memo/ > /dev/null && vim log && popd > /dev/null"
+
+alias xmon="xrandr -s 2560x1440"
+alias xlap="xrandr -s 1920x1080"
+
 function treg {
     # tree respecting gitignore
 
