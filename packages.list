@@ -9,3 +9,4 @@ cmake
 python3
 rustup
 clang
+screen
